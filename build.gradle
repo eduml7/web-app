@@ -10,6 +10,6 @@ dependencies {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'es.edu.app.server.ApplicationServer'
+        attributes 'Main-Class': 'es.edu.app.ApplicationServer'
     }
 }
