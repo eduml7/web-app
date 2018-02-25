@@ -14,6 +14,7 @@ import com.sun.net.httpserver.HttpExchange;
 
 //TODO: naming de la clase
 public class ExchangeUtils {
+	
 	public static void sendResponse(HttpExchange httpExchange, String view) throws IOException {
 		String response = "";
 		httpExchange.sendResponseHeaders(200, response.getBytes().length);
