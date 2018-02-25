@@ -1,21 +1,28 @@
 package es.edu.app;
+
 import java.net.InetSocketAddress;
 
 import com.sun.net.httpserver.HttpServer;
 
-import es.edu.app.controller.API;
-import es.edu.app.controller.ControllerHandler;
-import es.edu.app.controller.LoginHandler;
+import es.edu.app.enums.WebAppFlow;
+import es.edu.app.handler.factory.WebAppHandlerFactory;
+import es.edu.app.handler.factory.WebAppHandlerFactoryImpl;
 
 public class ApplicationServer {
-	 public static void main(String[] args) throws Exception {
-		 int port = 9000;
-		 HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
-		 System.out.println("server started at " + port);
-		 server.createContext("/controller", new ControllerHandler());
-		 server.createContext("/login", new LoginHandler());
-		 server.createContext("/v1/api", new API());
-		 server.setExecutor(null);
-		 server.start();
-	 }
+
+	public static void main(String[] args) throws Exception {
+
+		WebAppHandlerFactory webAppHandlerFactory = new WebAppHandlerFactoryImpl();
+		// TODO: a propiedad
+		int port = 9000;
+		HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
+		// TODO: LOGBACK y logger
+		System.out.println("server started at " + port);
+		server.createContext(WebAppFlow.PAGE_CONTROLLER.getPath(), webAppHandlerFactory.getHandler(WebAppFlow.PAGE_CONTROLLER));
+		server.createContext(WebAppFlow.LOGIN.getPath(), webAppHandlerFactory.getHandler(WebAppFlow.LOGIN));
+		server.createContext(WebAppFlow.API.getPath(), webAppHandlerFactory.getHandler(WebAppFlow.API));
+		//TODO: ver esto
+		server.setExecutor(null);
+		server.start();
+	}
 }

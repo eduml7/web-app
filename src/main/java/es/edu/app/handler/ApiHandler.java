@@ -1,4 +1,4 @@
-package es.edu.app.controller;
+package es.edu.app.handler;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -8,14 +8,14 @@ import com.sun.net.httpserver.HttpHandler;
 
 import es.edu.app.constants.HttpMethod;
 
-public class API implements HttpHandler {
+public class ApiHandler implements HttpHandler {
 
 	@Override
-	public void handle(HttpExchange he) throws IOException {
+	public void handle(HttpExchange httpExchange) throws IOException {
 
 		String response = "Method not allowed";
 
-		switch (he.getRequestMethod()) {
+		switch (httpExchange.getRequestMethod()) {
 		case HttpMethod.POST:
 			response = HttpMethod.POST;
 			break;
@@ -27,8 +27,8 @@ public class API implements HttpHandler {
 			break;
 		}
 
-		he.sendResponseHeaders(200, response.getBytes().length);
-		OutputStream os = he.getResponseBody();
+		httpExchange.sendResponseHeaders(200, response.getBytes().length);
+		OutputStream os = httpExchange.getResponseBody();
 		os.write(response.getBytes());
 		os.close();
 	}
