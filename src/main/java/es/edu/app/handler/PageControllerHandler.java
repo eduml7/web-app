@@ -6,16 +6,14 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import es.edu.app.controller.WebAppController;
-import es.edu.app.controller.impl.PageControllerImpl;
-import es.edu.app.utils.ExchangeUtils;
+import es.edu.app.controller.impl.Page1ControllerImpl;
 
 public class PageControllerHandler implements HttpHandler {
 
 	@Override
 	public void handle(HttpExchange httpExchange) throws IOException {
 
-		ExchangeUtils.parseRequest(httpExchange);
-		WebAppController pageController = new PageControllerImpl(httpExchange);
+		WebAppController pageController = new Page1ControllerImpl(httpExchange);
 		pageController.sendResponse();
 
 	}
