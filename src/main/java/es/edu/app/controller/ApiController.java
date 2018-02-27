@@ -1,13 +1,13 @@
 package es.edu.app.controller;
 
 import java.io.IOException;
+import java.io.OutputStream;
 
 import com.sun.net.httpserver.HttpExchange;
 
 import es.edu.app.constants.HttpMethod;
 import es.edu.app.persistence.repository.UserRepository;
 import es.edu.app.persistence.repository.UserRepositoryImpl;
-import es.edu.app.utils.ExchangeUtils;
 
 public class ApiController {
 
@@ -37,7 +37,12 @@ public class ApiController {
 			break;
 		}
 
-		ExchangeUtils.sendResponse(httpExchange, response);
+		httpExchange.sendResponseHeaders(200, response.getBytes().length);
+		OutputStream os = httpExchange.getResponseBody();
+
+		os.write(response.getBytes());
+		os.close();
+
 	}
 
 }

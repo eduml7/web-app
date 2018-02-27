@@ -12,7 +12,7 @@ public class LoginHandler implements HttpHandler {
 
 	@Override
 	public void handle(HttpExchange httpExchange) throws IOException {
-		//httpExchange.getRequestHeaders().add("set-cookie", "world=Mars; expires=Sat, 03 May 2025 17:44:22 GMT");
+
 		WebAppController loginController = new LoginControllerImpl(httpExchange);
 		loginController.sendResponse();
 	}

@@ -14,7 +14,11 @@ public class CustomBasicAuth extends BasicAuthenticator {
 	@Override
 	public boolean checkCredentials(String username, String password) {
 		User user = PersistenceEngine.getPersistence().get(username);
-		return user.getPassword().equals(password);
+		if(user != null && user.getPassword().equals(password)) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 }

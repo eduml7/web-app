@@ -9,6 +9,7 @@ import es.edu.app.auth.WebAppAuthenticator;
 import es.edu.app.enums.WebAppFlow;
 import es.edu.app.filter.CustomBasicAuth;
 import es.edu.app.filter.ParameterFilter;
+import es.edu.app.filter.SessionFilter;
 import es.edu.app.handler.factory.WebAppHandlerFactory;
 import es.edu.app.handler.factory.WebAppHandlerFactoryImpl;
 
@@ -25,6 +26,7 @@ public class WebServerConfig {
 		HttpContext contextPage = server.createContext(WebAppFlow.PAGE_CONTROLLER.getPath(),
 				webAppHandlerFactory.getHandler(WebAppFlow.PAGE_CONTROLLER));
 		contextPage.getFilters().add(new ParameterFilter());
+		contextPage.getFilters().add(new SessionFilter());
 		contextPage.setAuthenticator(new WebAppAuthenticator());
 
 		server.createContext(WebAppFlow.LOGIN.getPath(), webAppHandlerFactory.getHandler(WebAppFlow.LOGIN));
