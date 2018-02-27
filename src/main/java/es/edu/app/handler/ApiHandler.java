@@ -1,36 +1,26 @@
 package es.edu.app.handler;
 
 import java.io.IOException;
-import java.io.OutputStream;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
-import es.edu.app.constants.HttpMethod;
+import es.edu.app.controller.ApiController;
+import es.edu.app.filter.AuthorizationService;
+import es.edu.app.persistence.PersistenceEngine;
 
 public class ApiHandler implements HttpHandler {
 
 	@Override
 	public void handle(HttpExchange httpExchange) throws IOException {
-
-		String response = "Method not allowed";
-
-		switch (httpExchange.getRequestMethod()) {
-		case HttpMethod.POST:
-			response = HttpMethod.POST;
-			break;
-		case HttpMethod.PUT:
-			response = HttpMethod.PUT;
-			break;
-		case HttpMethod.GET:
-			response = HttpMethod.GET;
-			break;
+		if (!AuthorizationService.authorizeApi(httpExchange.getRequestMethod(),
+				PersistenceEngine.getPersistence().get(httpExchange.getPrincipal().getName()).getRoles())) {
+			String response = "Unauthorized";
+			httpExchange.sendResponseHeaders(401, response.getBytes().length);
+		} else {
+			ApiController apiController = new ApiController(httpExchange);
+			apiController.sendResponse();
 		}
-
-		httpExchange.sendResponseHeaders(200, response.getBytes().length);
-		OutputStream os = httpExchange.getResponseBody();
-		os.write(response.getBytes());
-		os.close();
 	}
 
 }
