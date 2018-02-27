@@ -26,15 +26,22 @@ public class WebServerConfig {
 		HttpContext contextPage = server.createContext(WebAppFlow.PAGE_CONTROLLER.getPath(),
 				webAppHandlerFactory.getHandler(WebAppFlow.PAGE_CONTROLLER));
 		contextPage.getFilters().add(new ParameterFilter());
-		contextPage.getFilters().add(new SessionFilter());
 		contextPage.setAuthenticator(new WebAppAuthenticator());
+		
+		HttpContext contextPage1 = server.createContext(WebAppFlow.PAGE_1.getPath(),
+				webAppHandlerFactory.getHandler(WebAppFlow.PAGE_1));
+		contextPage1.getFilters().add(new ParameterFilter());
+		contextPage1.getFilters().add(new SessionFilter());
+	
 
 		server.createContext(WebAppFlow.LOGIN.getPath(), webAppHandlerFactory.getHandler(WebAppFlow.LOGIN));
 
 		HttpContext contextApi = server.createContext(WebAppFlow.API.getPath(),
 				webAppHandlerFactory.getHandler(WebAppFlow.API));
 		contextApi.setAuthenticator(new CustomBasicAuth(WebAppFlow.API.name()));
+		
 		server.setExecutor(null);
 		server.start();
 	}
 }
+

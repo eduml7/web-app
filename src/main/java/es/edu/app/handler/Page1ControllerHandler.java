@@ -6,14 +6,14 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import es.edu.app.controller.WebAppController;
-import es.edu.app.controller.impl.LoginControllerOkImpl;
+import es.edu.app.controller.impl.Page1ControllerImpl;
 
-public class PageControllerHandler implements HttpHandler {
+public class Page1ControllerHandler implements HttpHandler {
 
 	@Override
 	public void handle(HttpExchange httpExchange) throws IOException {
-		httpExchange.getResponseHeaders().add("set-cookie", "world=Mars; expires=Sat, 03 May 2025 17:44:22 GMT");
-			WebAppController pageController = new LoginControllerOkImpl(httpExchange);
+
+			WebAppController pageController = new Page1ControllerImpl(httpExchange);
 			pageController.sendResponse();
 		
 
