@@ -1,11 +1,14 @@
 package es.edu.app.controller.impl;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 
 import com.sun.net.httpserver.HttpExchange;
 
 import es.edu.app.controller.WebAppController;
-import es.edu.app.utils.ExchangeUtils;
 
 public class Page3ControllerImpl implements WebAppController {
 
@@ -20,9 +23,12 @@ public class Page3ControllerImpl implements WebAppController {
 
 	@Override
 	public void sendResponse() throws IOException {
-		//Consulta a la BD por si esta
-		//si no esta error
-		//si esta ya devuelve la vista segun el rol
-		ExchangeUtils.sendResponse(httpExchange, PAGE_3_VIEW);
+		String response = "";
+		httpExchange.sendResponseHeaders(200, response.getBytes().length);
+		OutputStream os = httpExchange.getResponseBody();
+		String content = new String(Files.readAllBytes(new File(PAGE_3_VIEW).toPath()), StandardCharsets.UTF_8);
+		content = content.replaceAll("\\{USER_NAME\\}", "page_3_name!");//httpExchange.getPrincipal().getUsername());
+		os.write(content.getBytes());
+		os.close();
 	}
 }

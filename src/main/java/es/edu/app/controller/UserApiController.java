@@ -9,12 +9,12 @@ import es.edu.app.constants.HttpMethod;
 import es.edu.app.persistence.repository.UserRepository;
 import es.edu.app.persistence.repository.UserRepositoryImpl;
 
-public class ApiController {
+public class UserApiController {
 
 	private UserRepository userRepo;
 	private HttpExchange httpExchange;
 
-	public ApiController(HttpExchange httpExchange) {
+	public UserApiController(HttpExchange httpExchange) {
 		super();
 		this.httpExchange = httpExchange;
 		userRepo = new UserRepositoryImpl();

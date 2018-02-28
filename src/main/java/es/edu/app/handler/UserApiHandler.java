@@ -5,11 +5,11 @@ import java.io.IOException;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
-import es.edu.app.controller.ApiController;
+import es.edu.app.controller.UserApiController;
 import es.edu.app.filter.AuthorizationService;
 import es.edu.app.persistence.PersistenceEngine;
 
-public class ApiHandler implements HttpHandler {
+public class UserApiHandler implements HttpHandler {
 
 	@Override
 	public void handle(HttpExchange httpExchange) throws IOException {
@@ -18,7 +18,7 @@ public class ApiHandler implements HttpHandler {
 			String response = "Unauthorized";
 			httpExchange.sendResponseHeaders(401, response.getBytes().length);
 		} else {
-			ApiController apiController = new ApiController(httpExchange);
+			UserApiController apiController = new UserApiController(httpExchange);
 			apiController.sendResponse();
 		}
 	}

@@ -28,7 +28,7 @@ public class Page1ControllerImpl implements WebAppController {
 		httpExchange.sendResponseHeaders(200, response.getBytes().length);
 		OutputStream os = httpExchange.getResponseBody();
 		String content = new String(Files.readAllBytes(new File(PAGE_1_VIEW).toPath()), StandardCharsets.UTF_8);
-		content = content.replaceAll("\\{USER_NAME\\}", "poyatos");//httpExchange.getPrincipal().getUsername());
+		content = content.replaceAll("\\{USER_NAME\\}", "page_1_name!");//httpExchange.getPrincipal().getUsername());
 		os.write(content.getBytes());
 		os.close();
 	}

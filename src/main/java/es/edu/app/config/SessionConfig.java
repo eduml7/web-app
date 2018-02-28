@@ -7,16 +7,16 @@ import es.edu.app.dto.UserDTO;
 
 public class SessionConfig {
 
-	private static Map<Integer, UserDTO> session = null;
+	private static Map<String, UserDTO> session = null;
 
 	private SessionConfig() {
 		// nothing to do here
 	}
 
-	public static Map<Integer, UserDTO> getSession() throws Exception {
+	public static Map<String, UserDTO> getSession() {
 
 		if (session == null) {
-			session = new ConcurrentHashMap<Integer, UserDTO>();
+			session = new ConcurrentHashMap<String, UserDTO>();
 		}
 		return session;
 

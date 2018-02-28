@@ -3,10 +3,11 @@ package es.edu.app.handler.factory;
 import com.sun.net.httpserver.HttpHandler;
 
 import es.edu.app.enums.WebAppFlow;
-import es.edu.app.handler.ApiHandler;
 import es.edu.app.handler.LoginHandler;
+import es.edu.app.handler.LogoutHandler;
 import es.edu.app.handler.Page1ControllerHandler;
 import es.edu.app.handler.PageControllerHandler;
+import es.edu.app.handler.UserApiHandler;
 
 public class WebAppHandlerFactoryImpl implements WebAppHandlerFactory {
 
@@ -16,10 +17,12 @@ public class WebAppHandlerFactoryImpl implements WebAppHandlerFactory {
 		switch (flow) {
 		case LOGIN:
 			return new LoginHandler();
+		case LOGOUT:
+			return new LogoutHandler();
 		case PAGE_CONTROLLER:
 			return new PageControllerHandler();
-		case API:
-			return new ApiHandler();
+		case USER_API:
+			return new UserApiHandler();
 		case PAGE_1:
 			return new Page1ControllerHandler();
 		default:

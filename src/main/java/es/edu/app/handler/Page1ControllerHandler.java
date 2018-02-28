@@ -12,7 +12,6 @@ public class Page1ControllerHandler implements HttpHandler {
 
 	@Override
 	public void handle(HttpExchange httpExchange) throws IOException {
-
 			WebAppController pageController = new Page1ControllerImpl(httpExchange);
 			pageController.sendResponse();
 		
