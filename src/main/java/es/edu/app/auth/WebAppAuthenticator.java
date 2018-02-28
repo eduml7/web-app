@@ -47,7 +47,7 @@ public class WebAppAuthenticator extends Authenticator {
 				"session=" + sessionId + "; expires=Sat, 03 May 2025 17:44:22 GMT");
 		UserDTO userDTO = new UserDTO();
 		userDTO.setPassword(user.getPassword());
-		userDTO.setPassword(user.getUsername());
+		userDTO.setUsername(user.getUsername());
 		userDTO.setRoles(user.getRoles());
 		SessionConfig.getSession().put(sessionId, userDTO);
 
