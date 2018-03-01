@@ -11,7 +11,7 @@ import es.edu.app.utils.ExchangeUtils;
 
 public class LoginSuccessfulControllerImpl implements WebAppController {
 
-	private static final String LOGIN_VIEW = "src/main/resources/html/login_ok.html";
+	private static final String LOGIN_VIEW = "src/main/resources/html/login/login_successful.html";
 
 	private HttpExchange httpExchange;
 

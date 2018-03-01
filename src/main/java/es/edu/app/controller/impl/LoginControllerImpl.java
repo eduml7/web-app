@@ -9,7 +9,7 @@ import es.edu.app.utils.ExchangeUtils;
 
 public class LoginControllerImpl implements WebAppController{
 
-	private static final String LOGIN_VIEW = "src/main/resources/html/login.html";
+	private static final String LOGIN_VIEW = "src/main/resources/html/login/login.html";
 
 	private HttpExchange httpExchange;
 
