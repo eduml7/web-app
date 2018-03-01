@@ -24,8 +24,8 @@ public class WebServerConfig {
 		// TODO: LOGBACK y logger
 		System.out.println("server started at " + port);
 
-		HttpContext contextPage = server.createContext(WebAppFlow.PAGE_CONTROLLER.getPath(),
-				webAppHandlerFactory.getHandler(WebAppFlow.PAGE_CONTROLLER));
+		HttpContext contextPage = server.createContext(WebAppFlow.LOGIN_SUCCESSFUL.getPath(),
+				webAppHandlerFactory.getHandler(WebAppFlow.LOGIN_SUCCESSFUL));
 		contextPage.getFilters().add(new ParameterFilter());
 		contextPage.setAuthenticator(new WebAppAuthenticator());
 		
@@ -34,21 +34,21 @@ public class WebServerConfig {
 		contextPage1.getFilters().add(new ParameterFilter());
 		contextPage1.getFilters().add(new SessionFilter());
 		contextPage1.getFilters().add(new AuthorizationFilter());
-//		
-//		HttpContext contextPage2 = server.createContext(WebAppFlow.PAGE_2.getPath(),
-//				webAppHandlerFactory.getHandler(WebAppFlow.PAGE_2));
-//		contextPage1.getFilters().add(new ParameterFilter());
-//		contextPage1.getFilters().add(new SessionFilter());
-//	
-//		
-//		HttpContext contextPage3 = server.createContext(WebAppFlow.PAGE_3.getPath(),
-//				webAppHandlerFactory.getHandler(WebAppFlow.PAGE_3));
-//		contextPage1.getFilters().add(new ParameterFilter());
-//		contextPage1.getFilters().add(new SessionFilter());
-//	
+		
+		HttpContext contextPage2 = server.createContext(WebAppFlow.PAGE_2.getPath(),
+				webAppHandlerFactory.getHandler(WebAppFlow.PAGE_2));
+		contextPage2.getFilters().add(new ParameterFilter());
+		contextPage2.getFilters().add(new SessionFilter());
+		contextPage1.getFilters().add(new AuthorizationFilter());
+		
+		HttpContext contextPage3 = server.createContext(WebAppFlow.PAGE_3.getPath(),
+				webAppHandlerFactory.getHandler(WebAppFlow.PAGE_3));
+		contextPage3.getFilters().add(new ParameterFilter());
+		contextPage3.getFilters().add(new SessionFilter());
+		contextPage1.getFilters().add(new AuthorizationFilter());
 	
 
-		server.createContext(WebAppFlow.LOGIN.getPath(), webAppHandlerFactory.getHandler(WebAppFlow.LOGIN)).getFilters().add(new ParameterFilter());;
+		server.createContext(WebAppFlow.LOGIN.getPath(), webAppHandlerFactory.getHandler(WebAppFlow.LOGIN)).getFilters().add(new ParameterFilter());
 		
 		server.createContext(WebAppFlow.LOGOUT.getPath(), webAppHandlerFactory.getHandler(WebAppFlow.LOGOUT));
 

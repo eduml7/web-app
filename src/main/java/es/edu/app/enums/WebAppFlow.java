@@ -5,7 +5,8 @@ import java.util.Map;
 
 public enum WebAppFlow {
 	PAGE_1("/page_1", Role.PAGE_1), PAGE_2("/page_2", Role.PAGE_2), PAGE_3("/page_3", Role.PAGE_3), LOGIN("/login",
-			Role.ALL), PAGE_CONTROLLER("/page_controller", Role.ALL), USER_API("/v1/api/user", Role.ALL), LOGOUT("/logout", Role.ALL);
+			Role.ALL), LOGIN_SUCCESSFUL("/login_successful",
+					Role.ALL), USER_API("/v1/api/user", Role.ALL), LOGOUT("/logout", Role.ALL);
 
 	private String path;
 	private Role role;

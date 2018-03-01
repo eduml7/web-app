@@ -8,10 +8,10 @@ import com.sun.net.httpserver.Authenticator;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpPrincipal;
 
-import es.edu.app.config.SessionConfig;
 import es.edu.app.dto.UserDTO;
 import es.edu.app.persistence.PersistenceEngine;
 import es.edu.app.persistence.entity.User;
+import es.edu.app.session.Session;
 
 public class WebAppAuthenticator extends Authenticator {
 
@@ -49,7 +49,7 @@ public class WebAppAuthenticator extends Authenticator {
 		userDTO.setPassword(user.getPassword());
 		userDTO.setUsername(user.getUsername());
 		userDTO.setRoles(user.getRoles());
-		SessionConfig.getSession().put(sessionId, userDTO);
+		Session.getSession().put(sessionId, userDTO);
 
 		return result;
 	}

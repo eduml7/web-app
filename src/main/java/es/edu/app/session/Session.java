@@ -1,15 +1,15 @@
-package es.edu.app.config;
+package es.edu.app.session;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import es.edu.app.dto.UserDTO;
 
-public class SessionConfig {
+public class Session {
 
 	private static Map<String, UserDTO> session = null;
 
-	private SessionConfig() {
+	private Session() {
 		// nothing to do here
 	}
 

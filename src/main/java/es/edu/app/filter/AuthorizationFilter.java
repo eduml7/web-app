@@ -9,19 +9,19 @@ import java.util.Map;
 import com.sun.net.httpserver.Filter;
 import com.sun.net.httpserver.HttpExchange;
 
-import es.edu.app.config.SessionConfig;
 import es.edu.app.dto.UserDTO;
 import es.edu.app.enums.WebAppFlow;
+import es.edu.app.session.CookieUtils;
+import es.edu.app.session.Session;
 
 public class AuthorizationFilter extends Filter {
 
 	@Override
 	public void doFilter(HttpExchange httpExchange, Chain chain) throws IOException {
 		
-		Map<String, String> cookies = new HashMap<String, String>();
-		clientCookiesToMap(httpExchange, cookies);
+		Map<String, String> cookies = CookieUtils.clientCookiesToMap(httpExchange);
 
-		UserDTO user = SessionConfig.getSession().get(cookies.get("session"));
+		UserDTO user = Session.getSession().get(cookies.get("session"));
 		
 		if (!user.getRoles().contains(WebAppFlow.fromPath(httpExchange.getRequestURI().toString()).getRole())) {
 			httpExchange.getResponseHeaders().set("Pragma", "no-cache");
@@ -32,20 +32,7 @@ public class AuthorizationFilter extends Filter {
 			chain.doFilter(httpExchange);
 		}
 	}
-	public void clientCookiesToMap( HttpExchange e, Map<String, String> cookies ) {
-	    Map<String, List<String>> headers = e.getRequestHeaders();
-	    List<String> cookieHeaders = headers.get( "cookie" );
-	    if ( cookieHeaders != null ) {
-	      cookieHeaders.stream()
-	        .map( cookieHeader -> cookieHeader.split( "\\s*;\\s*" ) )
-	        .map( cookieArray -> Arrays.asList( cookieArray ) )
-	        .forEach( cookieList -> {
-	            cookieList.stream()
-	              .map( keyValue -> keyValue.split( "\\s*=\\s*" ) )
-	              .forEach( pair -> cookies.put( pair[ 0 ], pair[ 1 ] ) );
-	          } );
-	    }
-	}
+
 	@Override
 	public String description() {
 		// TODO Auto-generated method stub
