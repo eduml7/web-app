@@ -30,7 +30,7 @@ public class ExchangeUtils {
 			httpExchange.getResponseHeaders().set("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0");
 			httpExchange.sendResponseHeaders(401, -1);
 		} catch (IOException e) {
-
+			LOGGER.log(Level.SEVERE, e.getMessage());
 		}
 	}
 
