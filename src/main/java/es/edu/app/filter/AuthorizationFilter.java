@@ -1,9 +1,6 @@
 package es.edu.app.filter;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import com.sun.net.httpserver.Filter;
@@ -13,6 +10,7 @@ import es.edu.app.dto.UserDTO;
 import es.edu.app.enums.WebAppFlow;
 import es.edu.app.session.CookieUtils;
 import es.edu.app.session.Session;
+import es.edu.app.utils.ExchangeUtils;
 
 public class AuthorizationFilter extends Filter {
 
@@ -24,14 +22,13 @@ public class AuthorizationFilter extends Filter {
 		UserDTO user = Session.getSession().get(cookies.get("session"));
 		
 		if (!user.getRoles().contains(WebAppFlow.fromPath(httpExchange.getRequestURI().toString()).getRole())) {
-			httpExchange.getResponseHeaders().set("Pragma", "no-cache");
-			httpExchange.getResponseHeaders().set("Expires", "0");
-			httpExchange.getResponseHeaders().set("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0");
-			httpExchange.sendResponseHeaders(401, -1);
+			ExchangeUtils.sendForbiddenResponse(httpExchange);
 		} else {
 			chain.doFilter(httpExchange);
 		}
 	}
+
+
 
 	@Override
 	public String description() {

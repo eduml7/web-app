@@ -23,11 +23,7 @@ public class LoginSuccessfulControllerImpl implements WebAppController {
 	public void sendResponse() throws IOException {
 		Map<String, String> cookies = CookieUtils.clientCookiesToMap(httpExchange);
 		if (cookies.containsKey("caller")) {
-			httpExchange.getResponseHeaders().set("Location", cookies.get("caller"));
-			httpExchange.getResponseHeaders().set("Pragma", "no-cache");
-			httpExchange.getResponseHeaders().set("Expires", "0");
-			httpExchange.getResponseHeaders().set("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0");
-			httpExchange.sendResponseHeaders(301, -1);
+			ExchangeUtils.sendRedirectionResponse(httpExchange, cookies.get("caller"));
 		} else {
 
 			ExchangeUtils.sendResponse(httpExchange, LOGIN_VIEW);

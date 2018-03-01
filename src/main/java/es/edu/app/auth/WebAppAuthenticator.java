@@ -17,6 +17,7 @@ import es.edu.app.persistence.entity.User;
 import es.edu.app.session.Cookie;
 import es.edu.app.session.CookieUtils;
 import es.edu.app.session.Session;
+import es.edu.app.utils.ExchangeUtils;
 
 public class WebAppAuthenticator extends Authenticator {
 
@@ -26,16 +27,7 @@ public class WebAppAuthenticator extends Authenticator {
 		Map<String, Object> params = (Map<String, Object>) httpExchange.getAttribute("parameters");
 		Result result = null;
 		if (params.get("username") == null) {
-			httpExchange.getResponseHeaders().set("Location", "http://localhost:9010/login");
-			httpExchange.getResponseHeaders().set("Pragma", "no-cache");
-			httpExchange.getResponseHeaders().set("Expires", "0");
-			httpExchange.getResponseHeaders().set("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0");
-			try {
-				httpExchange.sendResponseHeaders(301, -1);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			ExchangeUtils.sendRedirectionResponse(httpExchange, "http://localhost:9010/login");
 		}
 
 		// TODO: MEter servicio y trabajar con DTO
@@ -58,5 +50,7 @@ public class WebAppAuthenticator extends Authenticator {
 
 		return result;
 	}
+
+
 
 }

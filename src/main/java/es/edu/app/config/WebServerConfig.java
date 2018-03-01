@@ -39,13 +39,13 @@ public class WebServerConfig {
 				webAppHandlerFactory.getHandler(WebAppFlow.PAGE_2));
 		contextPage2.getFilters().add(new ParameterFilter());
 		contextPage2.getFilters().add(new SessionFilter());
-		contextPage1.getFilters().add(new AuthorizationFilter());
+		contextPage2.getFilters().add(new AuthorizationFilter());
 		
 		HttpContext contextPage3 = server.createContext(WebAppFlow.PAGE_3.getPath(),
 				webAppHandlerFactory.getHandler(WebAppFlow.PAGE_3));
 		contextPage3.getFilters().add(new ParameterFilter());
 		contextPage3.getFilters().add(new SessionFilter());
-		contextPage1.getFilters().add(new AuthorizationFilter());
+		contextPage3.getFilters().add(new AuthorizationFilter());
 	
 
 		server.createContext(WebAppFlow.LOGIN.getPath(), webAppHandlerFactory.getHandler(WebAppFlow.LOGIN)).getFilters().add(new ParameterFilter());

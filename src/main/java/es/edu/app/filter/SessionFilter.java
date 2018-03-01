@@ -11,6 +11,7 @@ import com.sun.net.httpserver.HttpExchange;
 import es.edu.app.constants.WebAppCookies;
 import es.edu.app.session.Cookie;
 import es.edu.app.session.CookieUtils;
+import es.edu.app.utils.ExchangeUtils;
 
 public class SessionFilter extends Filter {
 
@@ -23,11 +24,7 @@ public class SessionFilter extends Filter {
 			httpExchange.getResponseHeaders().add(WebAppCookies.SET_COOKIE_HEADER,
 					CookieUtils.createCookie(new Cookie(WebAppCookies.CALLER, httpExchange.getRequestURI().toString(),
 							OffsetDateTime.now().plus(Duration.ofMinutes(5)))));
-			httpExchange.getResponseHeaders().set("Location", "http://localhost:9010/login");
-			httpExchange.getResponseHeaders().set("Pragma", "no-cache");
-			httpExchange.getResponseHeaders().set("Expires", "0");
-			httpExchange.getResponseHeaders().set("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0");
-			httpExchange.sendResponseHeaders(301, -1);
+			ExchangeUtils.sendRedirectionResponse(httpExchange, "http://localhost:9010/login");
 		} else {
 			chain.doFilter(httpExchange);
 		}
