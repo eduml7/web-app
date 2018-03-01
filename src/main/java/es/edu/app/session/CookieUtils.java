@@ -1,5 +1,6 @@
 package es.edu.app.session;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.Map;
 
 import com.sun.net.httpserver.HttpExchange;
 
-import es.edu.app.constants.Cookie;
+import es.edu.app.constants.WebAppCookies;
 
 public class CookieUtils {
 
@@ -17,7 +18,7 @@ public class CookieUtils {
 	public static Map<String, String> clientCookiesToMap(HttpExchange httpExchange) {
 
 		Map<String, List<String>> headers = httpExchange.getRequestHeaders();
-		List<String> cookieHeaders = headers.get(Cookie.COOKIE);
+		List<String> cookieHeaders = headers.get(WebAppCookies.COOKIE);
 		Map<String, String> cookies = new HashMap<String, String>();
 
 		if (cookieHeaders != null) {
@@ -29,5 +30,10 @@ public class CookieUtils {
 		}
 
 		return cookies;
+	}
+
+	public static String createCookie(Cookie cookie) {
+		return String.format("%s=%s; expires=%s", cookie.getKey(), cookie.getValue(),
+				DateTimeFormatter.RFC_1123_DATE_TIME.format(cookie.getExpiration()));
 	}
 }
