@@ -1,15 +1,15 @@
-package es.edu.app.handler.factory;
+package es.edu.app.handler;
 
 import com.sun.net.httpserver.HttpHandler;
 
 import es.edu.app.enums.WebAppFlow;
-import es.edu.app.handler.LoginHandler;
-import es.edu.app.handler.LogoutHandler;
-import es.edu.app.handler.Page1ControllerHandler;
-import es.edu.app.handler.Page2ControllerHandler;
-import es.edu.app.handler.Page3ControllerHandler;
-import es.edu.app.handler.LoginSuccessfulControllerHandler;
-import es.edu.app.handler.UserApiHandler;
+import es.edu.app.handler.api.UserApiHandler;
+import es.edu.app.handler.login.LoginHandler;
+import es.edu.app.handler.login.LoginSuccessfulHandler;
+import es.edu.app.handler.login.LogoutHandler;
+import es.edu.app.handler.page.Page1Handler;
+import es.edu.app.handler.page.Page2Handler;
+import es.edu.app.handler.page.Page3Handler;
 
 public class WebAppHandlerFactoryImpl implements WebAppHandlerFactory {
 
@@ -22,15 +22,15 @@ public class WebAppHandlerFactoryImpl implements WebAppHandlerFactory {
 		case LOGOUT:
 			return new LogoutHandler();
 		case LOGIN_SUCCESSFUL:
-			return new LoginSuccessfulControllerHandler();
+			return new LoginSuccessfulHandler();
 		case USER_API:
 			return new UserApiHandler();
 		case PAGE_1:
-			return new Page1ControllerHandler();
+			return new Page1Handler();
 		case PAGE_2:
-			return new Page2ControllerHandler();
+			return new Page2Handler();
 		case PAGE_3:
-			return new Page3ControllerHandler();
+			return new Page3Handler();
 		default:
 			throw new Exception("Operation not allowed");
 		}

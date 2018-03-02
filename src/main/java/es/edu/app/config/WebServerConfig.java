@@ -11,8 +11,8 @@ import es.edu.app.filter.AuthorizationFilter;
 import es.edu.app.filter.CustomBasicAuth;
 import es.edu.app.filter.ParameterFilter;
 import es.edu.app.filter.SessionFilter;
-import es.edu.app.handler.factory.WebAppHandlerFactory;
-import es.edu.app.handler.factory.WebAppHandlerFactoryImpl;
+import es.edu.app.handler.WebAppHandlerFactory;
+import es.edu.app.handler.WebAppHandlerFactoryImpl;
 
 public class WebServerConfig {
 

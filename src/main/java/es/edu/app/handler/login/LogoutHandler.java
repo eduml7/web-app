@@ -1,4 +1,4 @@
-package es.edu.app.handler;
+package es.edu.app.handler.login;
 
 import java.io.IOException;
 import java.time.Duration;

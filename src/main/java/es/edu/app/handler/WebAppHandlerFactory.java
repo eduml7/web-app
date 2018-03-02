@@ -1,4 +1,4 @@
-package es.edu.app.handler.factory;
+package es.edu.app.handler;
 
 import com.sun.net.httpserver.HttpHandler;
 

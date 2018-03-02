@@ -1,26 +1,20 @@
-package es.edu.app.controller.impl;
+package es.edu.app.handler.login;
 
 import java.io.IOException;
 import java.util.Map;
 
 import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
 
-import es.edu.app.controller.WebAppController;
 import es.edu.app.session.CookieUtils;
 import es.edu.app.utils.ExchangeUtils;
 
-public class LoginSuccessfulControllerImpl implements WebAppController {
-
+public class LoginSuccessfulHandler implements HttpHandler {
 	private static final String LOGIN_VIEW = "src/main/resources/html/login/login_successful.html";
 
-	private HttpExchange httpExchange;
+	@Override
+	public void handle(HttpExchange httpExchange) throws IOException {
 
-	public LoginSuccessfulControllerImpl(HttpExchange httpExchange) {
-		super();
-		this.httpExchange = httpExchange;
-	}
-
-	public void sendResponse() throws IOException {
 		Map<String, String> cookies = CookieUtils.clientCookiesToMap(httpExchange);
 		if (cookies.containsKey("caller")) {
 			ExchangeUtils.sendRedirectionResponse(httpExchange, cookies.get("caller"));
@@ -28,5 +22,7 @@ public class LoginSuccessfulControllerImpl implements WebAppController {
 
 			ExchangeUtils.sendResponse(httpExchange, LOGIN_VIEW);
 		}
+
 	}
+
 }
