@@ -7,12 +7,13 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import es.edu.app.constants.HttpMethod;
+import es.edu.app.dto.UserDTO;
 import es.edu.app.filter.AuthorizationService;
-import es.edu.app.persistence.repository.UserRepository;
 import es.edu.app.persistence.repository.UserRepositoryImpl;
 import es.edu.app.service.user.UserService;
 import es.edu.app.service.user.UserServiceImpl;
 import es.edu.app.utils.ExchangeUtils;
+import es.edu.app.utils.JsonUtils;
 
 public class UserApiHandler implements HttpHandler {
 
@@ -26,18 +27,23 @@ public class UserApiHandler implements HttpHandler {
 			ExchangeUtils.sendForbiddenResponse(httpExchange);
 		} else {
 			String response = "Method not allowed";
+			UserDTO user = null;
 			switch (httpExchange.getRequestMethod()) {
 			case HttpMethod.POST:
-				response = userService.createUser(null).toString();
+				user = JsonUtils.jsonToObject(ExchangeUtils.getRequestBody(httpExchange), UserDTO.class);
+				response = JsonUtils.objectToJson(userService.createUser(user));
 				break;
 			case HttpMethod.PUT:
-				response = userService.updateUser(null).toString();
+				user = JsonUtils.jsonToObject(ExchangeUtils.getRequestBody(httpExchange), UserDTO.class);
+				response = JsonUtils.objectToJson(userService.updateUser(user));
 				break;
 			case HttpMethod.GET:
-				response = userService.getUser("admin").toString();
+				user = userService.getUser(ExchangeUtils.getPathParam(httpExchange));
+				response = JsonUtils.objectToJson(user);
 				break;
 			case HttpMethod.DELETE:
-				response = userService.deleteUser("").toString();
+				user = userService.deleteUser(ExchangeUtils.getPathParam(httpExchange));
+				response = JsonUtils.objectToJson(user);
 				break;
 			}
 

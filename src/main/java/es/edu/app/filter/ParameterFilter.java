@@ -22,7 +22,7 @@ public class ParameterFilter extends Filter {
 	}
 
 	@Override
-	public void doFilter(HttpExchange exchange, Chain chain) throws IOException {System.out.println("FILTRO PARAM ALGO?");
+	public void doFilter(HttpExchange exchange, Chain chain) throws IOException {
 		parseGetParameters(exchange);
 		parsePostParameters(exchange);
 		chain.doFilter(exchange);

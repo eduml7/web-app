@@ -6,7 +6,7 @@ import es.edu.app.persistence.entity.User;
 import es.edu.app.persistence.repository.UserRepository;
 
 public class UserServiceImpl implements UserService {
-	
+
 	private UserRepository userRepository;
 
 	public UserServiceImpl(UserRepository userRepository) {
@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDTO getUser(String username) {
 		User userEntity = userRepository.getUser(username);
-		if(userEntity == null){
+		if (userEntity == null) {
 			throw new UserNotFoundException(username);
 		}
 		return new UserDTO(userEntity.getUsername(), userEntity.getPassword(), userEntity.getRoles());
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDTO updateUser(UserDTO user) {
 		User userEntity = userRepository.getUser(user.getUsername());
-		if(userEntity == null){
+		if (userEntity == null) {
 			throw new UserNotFoundException(user.getUsername());
 		}
 		User userUpdated = userRepository.updateUser(new User(user.getUsername(), user.getPassword(), user.getRoles()));
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDTO deleteUser(String username) {
 		User userEntity = userRepository.getUser(username);
-		if(userEntity == null){
+		if (userEntity == null) {
 			throw new UserNotFoundException(username);
 		}
 		userRepository.deleteUser(username);

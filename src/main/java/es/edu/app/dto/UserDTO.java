@@ -2,12 +2,19 @@ package es.edu.app.dto;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import es.edu.app.enums.Role;
 
 public class UserDTO {
 	private String username;
 	private String password;
 	private List<Role> roles;
+
+	public UserDTO() {
+		super();
+	}
 
 	public UserDTO(String username, String password, List<Role> roles) {
 		super();
@@ -24,10 +31,12 @@ public class UserDTO {
 		this.username = username;
 	}
 
+	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}
 
+	@JsonProperty
 	public void setPassword(String password) {
 		this.password = password;
 	}
