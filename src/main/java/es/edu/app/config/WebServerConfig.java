@@ -12,6 +12,7 @@ import es.edu.app.auth.ViewAuthenticator;
 import es.edu.app.enums.WebAppFlow;
 import es.edu.app.filter.api.ApiContentNegotiationFilter;
 import es.edu.app.filter.api.ApiParameterFilter;
+import es.edu.app.filter.api.validation.UserValidationFilter;
 import es.edu.app.filter.view.SessionFilter;
 import es.edu.app.filter.view.ViewAuthorizationFilter;
 import es.edu.app.filter.view.ViewParameterFilter;
@@ -65,6 +66,7 @@ public class WebServerConfig {
 		contextApi.setAuthenticator(new ApiAuthenticator(WebAppFlow.USER_API.name()));
 		contextApi.getFilters().add(new ApiContentNegotiationFilter());
 		contextApi.getFilters().add(new ApiParameterFilter());
+		contextApi.getFilters().add(new UserValidationFilter());
 		
 		server.setExecutor(null);
 		server.start();

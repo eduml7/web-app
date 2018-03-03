@@ -10,11 +10,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.sun.net.httpserver.Filter;
 import com.sun.net.httpserver.HttpExchange;
 
 public class ViewParameterFilter extends Filter {
+	
+	private final static Logger LOGGER = Logger.getLogger(ViewParameterFilter.class.getName());
 
 	@Override
 	public String description() {
@@ -23,6 +27,7 @@ public class ViewParameterFilter extends Filter {
 
 	@Override
 	public void doFilter(HttpExchange exchange, Chain chain) throws IOException {
+		LOGGER.log(Level.INFO, this.description());
 		parseGetParameters(exchange);
 		parsePostParameters(exchange);
 		chain.doFilter(exchange);

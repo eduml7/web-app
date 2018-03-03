@@ -1,6 +1,8 @@
 package es.edu.app.auth;
 
 import java.util.Base64;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.sun.net.httpserver.Authenticator;
 import com.sun.net.httpserver.Headers;
@@ -15,6 +17,8 @@ import es.edu.app.service.user.UserService;
 import es.edu.app.service.user.UserServiceImpl;
 
 public class ApiAuthenticator extends Authenticator {
+	
+	private final static Logger LOGGER = Logger.getLogger(ApiAuthenticator.class.getName());
 
 	protected String realm;
 
@@ -28,7 +32,7 @@ public class ApiAuthenticator extends Authenticator {
 
 	@Override
 	public Result authenticate(HttpExchange t) {
-
+		LOGGER.log(Level.INFO, "Authenticating api user");
 		UserService userService = new UserServiceImpl(new UserRepositoryImpl());
 
 		Headers rmap = t.getRequestHeaders();

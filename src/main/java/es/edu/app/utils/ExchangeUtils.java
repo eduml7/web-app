@@ -22,9 +22,11 @@ public class ExchangeUtils {
 
 	private static final String USER_NAME_PARAM = "{USER_NAME}";
 	private static final String USER_NAME_REGEX = "\\{USER_NAME\\}";
+	private static final String LOCATION_HEADER = "Location";
 
 	public static void sendViewResponse(HttpExchange httpExchange, String view, int statusCode) {
 		try {
+			LOGGER.log(Level.INFO, String.format("Sending %s response", statusCode));
 			commonHeaders(httpExchange);
 			httpExchange.sendResponseHeaders(statusCode, 0);
 			OutputStream responseBody = httpExchange.getResponseBody();
@@ -45,6 +47,7 @@ public class ExchangeUtils {
 
 	public static void sendApiResponse(HttpExchange httpExchange, String message, int statusCode) {
 		try {
+			LOGGER.log(Level.INFO, String.format("Sending %s response", statusCode));
 			commonHeaders(httpExchange);
 			httpExchange.sendResponseHeaders(statusCode, message.getBytes().length);
 			OutputStream responseBody = httpExchange.getResponseBody();
@@ -57,8 +60,9 @@ public class ExchangeUtils {
 
 	public static void sendRedirectionResponse(HttpExchange httpExchange, String location) {
 		try {
+			LOGGER.log(Level.INFO, String.format("Sending 301 response"));
 			commonHeaders(httpExchange);
-			httpExchange.getResponseHeaders().set("Location", location);
+			httpExchange.getResponseHeaders().set(LOCATION_HEADER, location);
 			httpExchange.sendResponseHeaders(301, -1);
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, e.getMessage(), e);

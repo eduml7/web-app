@@ -1,6 +1,8 @@
 package es.edu.app.filter.api;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.sun.net.httpserver.Filter;
 import com.sun.net.httpserver.Headers;
@@ -12,9 +14,13 @@ import es.edu.app.enums.HttpStatus;
 import es.edu.app.utils.ExchangeUtils;
 
 public class ApiContentNegotiationFilter extends Filter {
+	
+	private final static Logger LOGGER = Logger.getLogger(ApiContentNegotiationFilter.class.getName());
 
 	@Override
 	public void doFilter(HttpExchange httpExchange, Chain chain) throws IOException {
+		
+		LOGGER.log(Level.INFO, this.description());
 
 		Headers requestHeaders = httpExchange.getRequestHeaders();
 		String contentType = requestHeaders.getFirst(MediaType.CONTENT_TYPE);

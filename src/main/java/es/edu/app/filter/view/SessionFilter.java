@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.sun.net.httpserver.Filter;
 import com.sun.net.httpserver.HttpExchange;
@@ -15,9 +17,11 @@ import es.edu.app.utils.ExchangeUtils;
 
 public class SessionFilter extends Filter {
 
+	private final static Logger LOGGER = Logger.getLogger(SessionFilter.class.getName());
+
 	@Override
 	public void doFilter(HttpExchange httpExchange, Chain chain) throws IOException {
-
+		LOGGER.log(Level.INFO, this.description());
 		Map<String, String> cookies = CookieUtils.clientCookiesToMap(httpExchange);
 
 		if (!cookies.containsKey(WebAppCookies.SESSION)) {
@@ -32,7 +36,6 @@ public class SessionFilter extends Filter {
 
 	@Override
 	public String description() {
-		// TODO Auto-generated method stub
 		return "Session filter";
 	}
 }

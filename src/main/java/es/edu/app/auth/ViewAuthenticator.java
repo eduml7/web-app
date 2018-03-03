@@ -26,7 +26,7 @@ import es.edu.app.utils.ExchangeUtils;
 
 public class ViewAuthenticator extends Authenticator {
 
-	private final static Logger LOGGER = Logger.getLogger(ExchangeUtils.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(ViewAuthenticator.class.getName());
 
 	private static final String UNAUTHORIZED = "src/main/resources/html/error/401.html";
 	private static final String PASSWORD = "password";
@@ -35,7 +35,7 @@ public class ViewAuthenticator extends Authenticator {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Result authenticate(HttpExchange httpExchange) {
-
+		LOGGER.log(Level.INFO, "Authenticating view user");
 		UserService userService = new UserServiceImpl(new UserRepositoryImpl());
 
 		Map<String, String> params = (Map<String, String>) httpExchange

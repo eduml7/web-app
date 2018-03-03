@@ -12,7 +12,7 @@ public class JsonUtils {
 
 	private final static Logger LOGGER = Logger.getLogger(JsonUtils.class.getName());
 
-	public static <T> String objectToJson(T object) {
+	public static <T> String objectToJson(T object) throws SerializationDeserializationException{
 		ObjectMapper objectMapper = new ObjectMapper();
 		String result = null;
 		try {
@@ -25,7 +25,7 @@ public class JsonUtils {
 		
 	}
 	
-	public static <T> T jsonToObject(String json, Class<T> clazz) {
+	public static <T> T jsonToObject(String json, Class<T> clazz) throws SerializationDeserializationException{
 		ObjectMapper objectMapper = new ObjectMapper();
 		T result = null;
 		try {

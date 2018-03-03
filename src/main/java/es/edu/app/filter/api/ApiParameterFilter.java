@@ -3,6 +3,8 @@ package es.edu.app.filter.api;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.sun.net.httpserver.Filter;
@@ -11,6 +13,8 @@ import com.sun.net.httpserver.HttpExchange;
 import es.edu.app.constants.WebAppExchangeAttributes;
 
 public class ApiParameterFilter extends Filter {
+	
+	private final static Logger LOGGER = Logger.getLogger(ApiParameterFilter.class.getName());
 
 	private static final String CARRIER_RETURN = "\n";
 	private static final String SLASH = "/";
@@ -22,6 +26,7 @@ public class ApiParameterFilter extends Filter {
 
 	@Override
 	public void doFilter(HttpExchange exchange, Chain chain) throws IOException {
+		LOGGER.log(Level.INFO, this.description());
 		getRequestBody(exchange);
 		getPathParam(exchange);
 		chain.doFilter(exchange);

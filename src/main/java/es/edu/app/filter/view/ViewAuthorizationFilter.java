@@ -2,6 +2,8 @@ package es.edu.app.filter.view;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.sun.net.httpserver.Filter;
 import com.sun.net.httpserver.HttpExchange;
@@ -15,12 +17,14 @@ import es.edu.app.session.Session;
 import es.edu.app.utils.ExchangeUtils;
 
 public class ViewAuthorizationFilter extends Filter {
-	
+
+	private final static Logger LOGGER = Logger.getLogger(ViewAuthorizationFilter.class.getName());
+
 	private static final String FORBIDDEN = "src/main/resources/html/error/403.html";
 
 	@Override
 	public void doFilter(HttpExchange httpExchange, Chain chain) throws IOException {
-
+		LOGGER.log(Level.INFO, this.description());
 		Map<String, String> cookies = CookieUtils.clientCookiesToMap(httpExchange);
 
 		UserDTO user = Session.getSession().get(cookies.get(WebAppCookies.SESSION));
