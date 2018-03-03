@@ -8,12 +8,15 @@ import com.sun.net.httpserver.HttpExchange;
 
 import es.edu.app.constants.WebAppCookies;
 import es.edu.app.dto.UserDTO;
+import es.edu.app.enums.HttpStatus;
 import es.edu.app.enums.WebAppFlow;
 import es.edu.app.session.CookieUtils;
 import es.edu.app.session.Session;
 import es.edu.app.utils.ExchangeUtils;
 
 public class ViewAuthorizationFilter extends Filter {
+	
+	private static final String FORBIDDEN = "src/main/resources/html/error/403.html";
 
 	@Override
 	public void doFilter(HttpExchange httpExchange, Chain chain) throws IOException {
@@ -23,7 +26,7 @@ public class ViewAuthorizationFilter extends Filter {
 		UserDTO user = Session.getSession().get(cookies.get(WebAppCookies.SESSION));
 
 		if (!user.getRoles().contains(WebAppFlow.fromPath(httpExchange.getRequestURI().toString()).getRole())) {
-			ExchangeUtils.sendForbiddenResponse(httpExchange);
+			ExchangeUtils.sendViewResponse(httpExchange, FORBIDDEN, HttpStatus.FORBIDDEN.getHttpCode());
 		} else {
 			chain.doFilter(httpExchange);
 		}

@@ -9,7 +9,7 @@ import es.edu.app.utils.ExchangeUtils;
 
 public class Page3Handler implements HttpHandler {
 
-	public static final String PAGE_3_VIEW = "src/main/resources/html/users/page_3.html";
+	private static final String PAGE_3_VIEW = "src/main/resources/html/users/page_3.html";
 
 	@Override
 	public void handle(HttpExchange httpExchange) throws IOException {

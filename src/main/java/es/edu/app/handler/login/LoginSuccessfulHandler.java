@@ -6,6 +6,8 @@ import java.util.Map;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
+import es.edu.app.constants.WebAppCookies;
+import es.edu.app.enums.HttpStatus;
 import es.edu.app.session.CookieUtils;
 import es.edu.app.utils.ExchangeUtils;
 
@@ -17,11 +19,11 @@ public class LoginSuccessfulHandler implements HttpHandler {
 	public void handle(HttpExchange httpExchange) throws IOException {
 
 		Map<String, String> cookies = CookieUtils.clientCookiesToMap(httpExchange);
-		if (cookies.containsKey("caller")) {
-			ExchangeUtils.sendRedirectionResponse(httpExchange, cookies.get("caller"));
+		if (cookies.containsKey(WebAppCookies.CALLER)) {
+			ExchangeUtils.sendRedirectionResponse(httpExchange, cookies.get(WebAppCookies.CALLER));
 		} else {
 
-			ExchangeUtils.sendViewResponse(httpExchange, LOGIN_VIEW);
+			ExchangeUtils.sendViewResponse(httpExchange, LOGIN_VIEW, HttpStatus.OK.getHttpCode());
 		}
 
 	}

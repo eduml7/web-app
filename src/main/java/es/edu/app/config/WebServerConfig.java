@@ -65,7 +65,7 @@ public class WebServerConfig {
 		contextApi.setAuthenticator(new ApiAuthenticator(WebAppFlow.USER_API.name()));
 		contextApi.getFilters().add(new ApiContentNegotiationFilter());
 		contextApi.getFilters().add(new ApiParameterFilter());
-
+		
 		server.setExecutor(null);
 		server.start();
 	}

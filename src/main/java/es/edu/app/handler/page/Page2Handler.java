@@ -8,7 +8,8 @@ import com.sun.net.httpserver.HttpHandler;
 import es.edu.app.utils.ExchangeUtils;
 
 public class Page2Handler implements HttpHandler {
-	public static final String PAGE_2_VIEW = "src/main/resources/html/users/page_2.html";
+	
+	private static final String PAGE_2_VIEW = "src/main/resources/html/users/page_2.html";
 
 	@Override
 	public void handle(HttpExchange httpExchange) throws IOException {
