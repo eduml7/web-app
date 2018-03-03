@@ -1,4 +1,4 @@
-package es.edu.app.filter;
+package es.edu.app.filter.view;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,7 +14,7 @@ import java.util.Map;
 import com.sun.net.httpserver.Filter;
 import com.sun.net.httpserver.HttpExchange;
 
-public class ParameterFilter extends Filter {
+public class ViewParameterFilter extends Filter {
 
 	@Override
 	public String description() {
