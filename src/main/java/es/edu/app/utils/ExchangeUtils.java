@@ -26,10 +26,9 @@ public class ExchangeUtils {
 	private static final String CARRIER_RETURN = "\n";
 	private static final String USER_NAME_PARAM = "\\{USER_NAME\\}";
 
-	public static void sendResponse(HttpExchange httpExchange, String view) {
+	public static void sendViewResponse(HttpExchange httpExchange, String view) {
 		try {
-			String response = "";
-			httpExchange.sendResponseHeaders(200, response.getBytes().length);
+			httpExchange.sendResponseHeaders(200, 0);
 			OutputStream os = httpExchange.getResponseBody();
 			os.write(Files.readAllBytes(new File(view).toPath()));
 			os.close();
@@ -59,7 +58,7 @@ public class ExchangeUtils {
 	public static void sendForbiddenResponse(HttpExchange httpExchange) {
 		try {
 			commonHeaders(httpExchange);
-			httpExchange.sendResponseHeaders(401, -1);
+			httpExchange.sendResponseHeaders(403, -1);
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, e.getMessage(), e);
 		}
@@ -70,6 +69,18 @@ public class ExchangeUtils {
 			commonHeaders(httpExchange);
 			httpExchange.getResponseHeaders().set("Location", location);
 			httpExchange.sendResponseHeaders(301, -1);
+		} catch (IOException e) {
+			LOGGER.log(Level.SEVERE, e.getMessage(), e);
+		}
+	}
+	
+	public static void sendApiResponse(HttpExchange httpExchange, String message, int statusCode) {
+		try {
+			commonHeaders(httpExchange);
+	    	httpExchange.sendResponseHeaders(statusCode, 0);
+	    	OutputStream responseBody = httpExchange.getResponseBody();
+	    	responseBody.write(message.getBytes());
+	        responseBody.close();
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, e.getMessage(), e);
 		}

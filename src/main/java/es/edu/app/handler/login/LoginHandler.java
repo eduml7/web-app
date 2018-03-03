@@ -8,11 +8,12 @@ import com.sun.net.httpserver.HttpHandler;
 import es.edu.app.utils.ExchangeUtils;
 
 public class LoginHandler implements HttpHandler {
+	
 	private static final String LOGIN_VIEW = "src/main/resources/html/login/login.html";
 
 	@Override
 	public void handle(HttpExchange httpExchange) throws IOException {
-		ExchangeUtils.sendResponse(httpExchange, LOGIN_VIEW);
+		ExchangeUtils.sendViewResponse(httpExchange, LOGIN_VIEW);
 	}
 
 }

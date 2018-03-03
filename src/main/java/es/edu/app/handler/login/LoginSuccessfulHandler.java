@@ -10,6 +10,7 @@ import es.edu.app.session.CookieUtils;
 import es.edu.app.utils.ExchangeUtils;
 
 public class LoginSuccessfulHandler implements HttpHandler {
+
 	private static final String LOGIN_VIEW = "src/main/resources/html/login/login_successful.html";
 
 	@Override
@@ -20,7 +21,7 @@ public class LoginSuccessfulHandler implements HttpHandler {
 			ExchangeUtils.sendRedirectionResponse(httpExchange, cookies.get("caller"));
 		} else {
 
-			ExchangeUtils.sendResponse(httpExchange, LOGIN_VIEW);
+			ExchangeUtils.sendViewResponse(httpExchange, LOGIN_VIEW);
 		}
 
 	}

@@ -1,14 +1,13 @@
-package es.edu.app.filter;
+package es.edu.app.service.auth;
 
-import java.io.IOException;
 import java.util.List;
 
 import es.edu.app.constants.HttpMethod;
 import es.edu.app.enums.Role;
 
-public class AuthorizationService {
+public class ApiAuthorizationServiceImpl implements ApiAuthorizationService {
 
-	public static boolean authorizeApi(String httpMethod, List<Role> roles) throws IOException {
+	public boolean authorize(String httpMethod, List<Role> roles) {
 		boolean bool = true;
 		if (!httpMethod.equals(HttpMethod.GET) && !roles.contains(Role.ADMIN)) {
 			bool = false;

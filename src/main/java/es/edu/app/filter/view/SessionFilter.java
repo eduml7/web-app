@@ -1,4 +1,4 @@
-package es.edu.app.filter;
+package es.edu.app.filter.view;
 
 import java.io.IOException;
 import java.time.Duration;

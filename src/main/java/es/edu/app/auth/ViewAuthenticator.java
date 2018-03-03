@@ -7,7 +7,6 @@ import java.util.UUID;
 
 import com.sun.net.httpserver.Authenticator;
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpPrincipal;
 
 import es.edu.app.constants.WebAppCookies;
 import es.edu.app.dto.UserDTO;
@@ -19,7 +18,7 @@ import es.edu.app.session.CookieUtils;
 import es.edu.app.session.Session;
 import es.edu.app.utils.ExchangeUtils;
 
-public class WebAppAuthenticator extends Authenticator {
+public class ViewAuthenticator extends Authenticator {
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -36,7 +35,7 @@ public class WebAppAuthenticator extends Authenticator {
 		UserDTO user = userService.getUser(params.get("username"));
 
 		if (user != null && user.getPassword().equals(params.get("password"))) {
-			result = new Authenticator.Success(new HttpPrincipal(user.getUsername(), "PAGES"));
+			result = new Authenticator.Success(new WebAppPrincipal(user.getUsername(), "VIEW", user.getRoles()));
 		} else {
 			result = new Authenticator.Failure(401);
 		}
