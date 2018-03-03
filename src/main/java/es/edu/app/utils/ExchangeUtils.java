@@ -20,20 +20,28 @@ public class ExchangeUtils {
 
 	private final static Logger LOGGER = Logger.getLogger(ExchangeUtils.class.getName());
 
-	private static final String USER_NAME_PARAM = "\\{USER_NAME\\}";
-	
+	private static final String USER_NAME_PARAM = "{USER_NAME}";
+	private static final String USER_NAME_REGEX = "\\{USER_NAME\\}";
+
 	public static void sendViewResponse(HttpExchange httpExchange, String view, int statusCode) {
 		try {
 			commonHeaders(httpExchange);
 			httpExchange.sendResponseHeaders(statusCode, 0);
 			OutputStream responseBody = httpExchange.getResponseBody();
-			responseBody.write(Files.readAllBytes(new File(view).toPath()));
+			String content = new String(Files.readAllBytes(new File(view).toPath()), StandardCharsets.UTF_8);
+			String response = content.contains(USER_NAME_PARAM) ? replaceParam(httpExchange, content) : content;
+			responseBody.write(response.getBytes());
 			responseBody.close();
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, e.getMessage(), e);
 		}
 	}
-	
+
+	private static String replaceParam(HttpExchange httpExchange, String content) {
+		Map<String, String> cookies = CookieUtils.clientCookiesToMap(httpExchange);
+		UserDTO user = Session.getSession().get(cookies.get(WebAppCookies.SESSION));
+		return content.replaceAll(USER_NAME_REGEX, user.getUsername());
+	}
 
 	public static void sendApiResponse(HttpExchange httpExchange, String message, int statusCode) {
 		try {
@@ -42,24 +50,6 @@ public class ExchangeUtils {
 			OutputStream responseBody = httpExchange.getResponseBody();
 			responseBody.write(message.getBytes());
 			responseBody.close();
-		} catch (IOException e) {
-			LOGGER.log(Level.SEVERE, e.getMessage(), e);
-		}
-	}
-
-
-	public static void sendPageResponse(HttpExchange httpExchange, String view) {
-		try {
-			httpExchange.sendResponseHeaders(200, 0);
-			OutputStream os = httpExchange.getResponseBody();
-			String content = new String(Files.readAllBytes(new File(view).toPath()), StandardCharsets.UTF_8);
-			Map<String, String> cookies = CookieUtils.clientCookiesToMap(httpExchange);
-
-			UserDTO user = Session.getSession().get(cookies.get(WebAppCookies.SESSION));
-
-			content = content.replaceAll(USER_NAME_PARAM, user.getUsername());
-			os.write(content.getBytes());
-			os.close();
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, e.getMessage(), e);
 		}

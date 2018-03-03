@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
+import es.edu.app.enums.HttpStatus;
 import es.edu.app.utils.ExchangeUtils;
 
 public class Page2Handler implements HttpHandler {
@@ -13,8 +14,7 @@ public class Page2Handler implements HttpHandler {
 
 	@Override
 	public void handle(HttpExchange httpExchange) throws IOException {
-
-		ExchangeUtils.sendPageResponse(httpExchange, PAGE_2_VIEW);
+		ExchangeUtils.sendViewResponse(httpExchange, PAGE_2_VIEW, HttpStatus.OK.getHttpCode());
 
 	}
 
