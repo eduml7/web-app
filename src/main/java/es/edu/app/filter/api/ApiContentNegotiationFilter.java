@@ -13,13 +13,19 @@ import es.edu.app.constants.MediaType;
 import es.edu.app.enums.HttpStatus;
 import es.edu.app.utils.ExchangeUtils;
 
+/**
+ * Handles the HTTP content negotiation. application/json is only allowed
+ * 
+ * @author edu
+ *
+ */
 public class ApiContentNegotiationFilter extends Filter {
-	
+
 	private final static Logger LOGGER = Logger.getLogger(ApiContentNegotiationFilter.class.getName());
 
 	@Override
 	public void doFilter(HttpExchange httpExchange, Chain chain) throws IOException {
-		
+
 		LOGGER.log(Level.INFO, this.description());
 
 		Headers requestHeaders = httpExchange.getRequestHeaders();

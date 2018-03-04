@@ -7,6 +7,12 @@ import java.util.Properties;
 
 import es.edu.app.WebApplication;
 
+/**
+ * Loads properties of the external properties file
+ * 
+ * @author edu
+ *
+ */
 public class PropertiesUtils {
 
 	private final static String CONFIG_FILE = "/web-app.properties";

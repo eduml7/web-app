@@ -12,15 +12,22 @@ import es.edu.app.enums.HttpStatus;
 import es.edu.app.session.CookieUtils;
 import es.edu.app.utils.ExchangeUtils;
 
+/**
+ * When the user sends its view credentials, this handler redirects to a caller
+ * page or show login successful if no caller is present. Notifies for increasing cookie life
+ * 
+ * @author edu
+ *
+ */
 public class LoginSuccessfulHandler extends Observable implements HttpHandler {
 
 	private static final String LOGIN_VIEW = "src/main/resources/html/login/login_successful.html";
 
 	@Override
 	public void handle(HttpExchange httpExchange) throws IOException {
-		
+
 		setChanged();
-        notifyObservers(httpExchange);
+		notifyObservers(httpExchange);
 
 		Map<String, String> cookies = CookieUtils.clientCookiesToMap(httpExchange);
 		if (cookies.containsKey(WebAppCookies.CALLER)) {

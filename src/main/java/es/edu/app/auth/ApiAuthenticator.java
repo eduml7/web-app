@@ -16,8 +16,15 @@ import es.edu.app.persistence.repository.UserRepositoryImpl;
 import es.edu.app.service.user.UserService;
 import es.edu.app.service.user.UserServiceImpl;
 
+/**
+ * Authenticates an authorizes users via API. If role ADMIN is not present, only
+ * GET is allowed
+ * 
+ * @author edu
+ *
+ */
 public class ApiAuthenticator extends Authenticator {
-	
+
 	private final static Logger LOGGER = Logger.getLogger(ApiAuthenticator.class.getName());
 
 	protected String realm;

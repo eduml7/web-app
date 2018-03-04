@@ -5,6 +5,12 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import es.edu.app.dto.UserDTO;
 
+/**
+ * In memory session engine
+ * 
+ * @author edu
+ *
+ */
 public class Session {
 
 	private static Map<String, UserDTO> session = null;

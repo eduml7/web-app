@@ -1,5 +1,11 @@
 package es.edu.app.constants;
 
+/**
+ * Media type who accepts the system
+ * 
+ * @author edu
+ *
+ */
 public final class MediaType {
 
 	// Header

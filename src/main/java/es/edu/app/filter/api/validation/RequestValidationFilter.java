@@ -12,6 +12,12 @@ import es.edu.app.enums.HttpStatus;
 import es.edu.app.enums.WebAppFlow;
 import es.edu.app.utils.ExchangeUtils;
 
+/**
+ * Validates the url for posting or puting info. It must be /v1/api/user
+ * 
+ * @author edu
+ *
+ */
 public class RequestValidationFilter extends Filter {
 
 	private final static Logger LOGGER = Logger.getLogger(RequestValidationFilter.class.getName());

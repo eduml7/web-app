@@ -5,6 +5,12 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import es.edu.app.persistence.entity.User;
 
+/**
+ * In memory persistence engine.
+ * 
+ * @author edu
+ *
+ */
 public class PersistenceEngine {
 
 	private static Map<String, User> inMemoryPersistence = null;

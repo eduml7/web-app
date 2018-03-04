@@ -16,6 +16,12 @@ import es.edu.app.dto.UserDTO;
 import es.edu.app.session.CookieUtils;
 import es.edu.app.session.Session;
 
+/**
+ * Send exchange responses
+ * 
+ * @author edu
+ *
+ */
 public class ExchangeUtils {
 
 	private final static Logger LOGGER = Logger.getLogger(ExchangeUtils.class.getName());

@@ -19,6 +19,12 @@ import es.edu.app.service.user.UserServiceImpl;
 import es.edu.app.utils.ExchangeUtils;
 import es.edu.app.utils.JsonUtils;
 
+/**
+ * Handles http request to the users api
+ * 
+ * @author edu
+ *
+ */
 public class UserApiHandler implements HttpHandler {
 
 	private final static Logger LOGGER = Logger.getLogger(UserApiHandler.class.getName());
@@ -26,7 +32,8 @@ public class UserApiHandler implements HttpHandler {
 	@Override
 	public void handle(HttpExchange httpExchange) throws IOException {
 
-		LOGGER.log(Level.INFO, String.format("Handling %s %s request", httpExchange.getRequestMethod(), httpExchange.getRequestURI()));
+		LOGGER.log(Level.INFO,
+				String.format("Handling %s %s request", httpExchange.getRequestMethod(), httpExchange.getRequestURI()));
 
 		UserService userService = new UserServiceImpl(new UserRepositoryImpl());
 

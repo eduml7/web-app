@@ -13,15 +13,21 @@ import es.edu.app.session.Cookie;
 import es.edu.app.session.CookieUtils;
 import es.edu.app.utils.ExchangeUtils;
 
+/**
+ * Deletes all cookies and redirects to login
+ * 
+ * @author edu
+ *
+ */
 public class LogoutHandler implements HttpHandler {
-	
+
 	private static final String EMPTY = "";
 
 	@Override
 	public void handle(HttpExchange httpExchange) throws IOException {
 
-		httpExchange.getResponseHeaders().add(WebAppCookies.SET_COOKIE_HEADER, CookieUtils
-				.createCookie(new Cookie(WebAppCookies.CALLER, EMPTY, OffsetDateTime.now().plus(Duration.ofMinutes(-1)))));
+		httpExchange.getResponseHeaders().add(WebAppCookies.SET_COOKIE_HEADER, CookieUtils.createCookie(
+				new Cookie(WebAppCookies.CALLER, EMPTY, OffsetDateTime.now().plus(Duration.ofMinutes(-1)))));
 		httpExchange.getResponseHeaders().add(WebAppCookies.SET_COOKIE_HEADER, CookieUtils.createCookie(
 				new Cookie(WebAppCookies.SESSION, EMPTY, OffsetDateTime.now().plus(Duration.ofMinutes(-1)))));
 		ExchangeUtils.sendRedirectionResponse(httpExchange, WebAppFlow.LOGIN.getPath());

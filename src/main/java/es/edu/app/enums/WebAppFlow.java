@@ -3,6 +3,12 @@ package es.edu.app.enums;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Tells what roles are allowed to see the pages
+ * 
+ * @author edu
+ *
+ */
 public enum WebAppFlow {
 	PAGE_1("/page_1", Role.PAGE_1), PAGE_2("/page_2", Role.PAGE_2), PAGE_3("/page_3", Role.PAGE_3), LOGIN("/login",
 			Role.ALL), LOGIN_SUCCESSFUL("/login_successful",

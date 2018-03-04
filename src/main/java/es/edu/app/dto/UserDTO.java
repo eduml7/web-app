@@ -1,5 +1,8 @@
 package es.edu.app.dto;
 
+/**
+ * System User, view layer
+ */
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

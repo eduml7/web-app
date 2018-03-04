@@ -9,6 +9,12 @@ import com.sun.net.httpserver.HttpHandler;
 import es.edu.app.enums.HttpStatus;
 import es.edu.app.utils.ExchangeUtils;
 
+/**
+ * Page 3 controller. Notifies for increasing cookie life
+ * 
+ * @author edu
+ *
+ */
 public class Page3Handler extends Observable implements HttpHandler {
 
 	private static final String PAGE_3_VIEW = "src/main/resources/html/users/page_3.html";

@@ -6,6 +6,11 @@ import com.sun.net.httpserver.HttpPrincipal;
 
 import es.edu.app.enums.Role;
 
+/**
+ * Extension of principal, with roles attribute
+ * @author edu
+ *
+ */
 public class WebAppPrincipal extends HttpPrincipal {
 
 	  private List<Role> roles; 

@@ -10,6 +10,12 @@ import com.sun.net.httpserver.HttpExchange;
 
 import es.edu.app.constants.WebAppCookies;
 
+/**
+ * Creates and gets cookies
+ * 
+ * @author edu
+ *
+ */
 public class CookieUtils {
 
 	public static final String COOKIE_HEADER = "\\s*;\\s*";

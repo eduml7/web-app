@@ -11,6 +11,13 @@ import com.sun.net.httpserver.HttpExchange;
 
 import es.edu.app.constants.WebAppCookies;
 
+/**
+ * Cookie observer, if is notified, increases cookie session life. Is notified
+ * in every user action.
+ * 
+ * @author edu
+ *
+ */
 public class CookieObserver implements Observer {
 
 	private static CookieObserver cookieObserver = null;

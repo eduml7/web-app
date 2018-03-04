@@ -12,8 +12,14 @@ import com.sun.net.httpserver.HttpExchange;
 
 import es.edu.app.constants.WebAppExchangeAttributes;
 
+/**
+ * Get params in http requests to the api
+ * 
+ * @author edu
+ *
+ */
 public class ApiParameterFilter extends Filter {
-	
+
 	private final static Logger LOGGER = Logger.getLogger(ApiParameterFilter.class.getName());
 
 	private static final String CARRIER_RETURN = "\n";

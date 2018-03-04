@@ -9,6 +9,12 @@ import com.sun.net.httpserver.HttpServer;
 import es.edu.app.enums.WebAppFlow;
 import es.edu.app.utils.PropertiesUtils;
 
+/**
+ * Creates the server, his contexts and starts it.
+ * 
+ * @author edu
+ *
+ */
 public class WebServerConfig {
 
 	private final static Logger LOGGER = Logger.getLogger(WebServerConfig.class.getName());
@@ -19,7 +25,7 @@ public class WebServerConfig {
 		WebServerContextFactory webAppHandlerFactory = new WebServerContextFactoryImpl();
 
 		int port = Integer.parseInt(PropertiesUtils.getPropValues(SERVER_PORT));
-		
+
 		HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
 
 		LOGGER.log(Level.INFO, String.format("Server started at %s", port));
@@ -31,7 +37,7 @@ public class WebServerConfig {
 		webAppHandlerFactory.createContext(server, WebAppFlow.PAGE_1);
 		webAppHandlerFactory.createContext(server, WebAppFlow.PAGE_2);
 		webAppHandlerFactory.createContext(server, WebAppFlow.PAGE_3);
-	
+
 		server.setExecutor(null);
 		server.start();
 	}

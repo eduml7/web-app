@@ -7,6 +7,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import es.edu.app.exception.SerializationDeserializationException;
 
+/**
+ * Json utils to de/serializing data for the API
+ * 
+ * @author edu
+ *
+ */
 public class JsonUtils {
 
 	private final static Logger LOGGER = Logger.getLogger(JsonUtils.class.getName());

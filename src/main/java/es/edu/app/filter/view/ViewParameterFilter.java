@@ -16,8 +16,14 @@ import java.util.logging.Logger;
 import com.sun.net.httpserver.Filter;
 import com.sun.net.httpserver.HttpExchange;
 
+/**
+ * Get params in http requests to the view
+ * 
+ * @author edu
+ *
+ */
 public class ViewParameterFilter extends Filter {
-	
+
 	private final static Logger LOGGER = Logger.getLogger(ViewParameterFilter.class.getName());
 
 	@Override

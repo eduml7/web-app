@@ -18,6 +18,12 @@ import es.edu.app.exception.SerializationDeserializationException;
 import es.edu.app.utils.ExchangeUtils;
 import es.edu.app.utils.JsonUtils;
 
+/**
+ * Validates the user info posted/putted by the user
+ * 
+ * @author edu
+ *
+ */
 public class UserValidationFilter extends Filter {
 
 	private final static Logger LOGGER = Logger.getLogger(UserValidationFilter.class.getName());
@@ -29,7 +35,7 @@ public class UserValidationFilter extends Filter {
 
 	@Override
 	public void doFilter(HttpExchange httpExchange, Chain chain) throws IOException {
-		
+
 		if (httpExchange.getRequestMethod().equals(HttpMethod.POST)
 				|| httpExchange.getRequestMethod().equals(HttpMethod.PUT)) {
 			try {

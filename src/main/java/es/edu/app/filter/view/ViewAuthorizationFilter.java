@@ -16,6 +16,12 @@ import es.edu.app.session.CookieUtils;
 import es.edu.app.session.Session;
 import es.edu.app.utils.ExchangeUtils;
 
+/**
+ * Checks if the user in session hash the sufficient privileges to view the page
+ * 
+ * @author edu
+ *
+ */
 public class ViewAuthorizationFilter extends Filter {
 
 	private final static Logger LOGGER = Logger.getLogger(ViewAuthorizationFilter.class.getName());

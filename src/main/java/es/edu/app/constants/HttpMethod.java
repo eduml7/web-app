@@ -1,5 +1,11 @@
 package es.edu.app.constants;
 
+/**
+ * HTTP methods allowed
+ * 
+ * @author edu
+ *
+ */
 public final class HttpMethod {
 
 	public static final String POST = "POST";

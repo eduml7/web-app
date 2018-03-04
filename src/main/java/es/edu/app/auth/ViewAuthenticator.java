@@ -24,6 +24,12 @@ import es.edu.app.session.CookieUtils;
 import es.edu.app.session.Session;
 import es.edu.app.utils.ExchangeUtils;
 
+/**
+ * Authenticates an authorizes users via web. Sets session if auth is ok.
+ * 
+ * @author edu
+ *
+ */
 public class ViewAuthenticator extends Authenticator {
 
 	private final static Logger LOGGER = Logger.getLogger(ViewAuthenticator.class.getName());

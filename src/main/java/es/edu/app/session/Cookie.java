@@ -2,6 +2,12 @@ package es.edu.app.session;
 
 import java.time.OffsetDateTime;
 
+/**
+ * Cookie POJO
+ * 
+ * @author edu
+ *
+ */
 public class Cookie {
 	private String key;
 	private String value;

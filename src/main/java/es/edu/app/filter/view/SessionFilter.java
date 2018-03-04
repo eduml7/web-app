@@ -16,6 +16,13 @@ import es.edu.app.session.Cookie;
 import es.edu.app.session.CookieUtils;
 import es.edu.app.utils.ExchangeUtils;
 
+/**
+ * Checks if there is a session in the system. If not, it must redirect to
+ * caller, else continues to login/caller
+ * 
+ * @author edu
+ *
+ */
 public class SessionFilter extends Filter {
 
 	private final static Logger LOGGER = Logger.getLogger(SessionFilter.class.getName());

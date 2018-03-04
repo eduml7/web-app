@@ -1,5 +1,11 @@
 package es.edu.app.enums;
 
+/**
+ * HttpStatuses the app handles
+ * 
+ * @author edu
+ *
+ */
 public enum HttpStatus {
 
 	NOT_ALLOWED(405, "Method Not Allowed"), CREATED(201, "Created"), OK(200, "OK"), NO_CONTENT(204,
