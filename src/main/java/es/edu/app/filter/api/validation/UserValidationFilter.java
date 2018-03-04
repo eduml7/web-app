@@ -24,7 +24,7 @@ public class UserValidationFilter extends Filter {
 
 	@Override
 	public String description() {
-		return "Validation filter for POST/PUT requests";
+		return "Validation filter for user POST/PUT requests";
 	}
 
 	@Override

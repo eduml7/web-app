@@ -16,6 +16,6 @@ jar {
 	baseName = 'web-app'
     version =  '0.0.1-SNAPSHOT'
     manifest {
-        attributes 'Main-Class': 'es.edu.app.ApplicationServer'
+        attributes 'Main-Class': 'es.edu.app.WebApplication'
     }
 }

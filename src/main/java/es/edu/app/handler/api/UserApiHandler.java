@@ -11,6 +11,7 @@ import es.edu.app.constants.HttpMethod;
 import es.edu.app.constants.WebAppExchangeAttributes;
 import es.edu.app.dto.UserDTO;
 import es.edu.app.enums.HttpStatus;
+import es.edu.app.exception.InvalidUsernameException;
 import es.edu.app.exception.UserNotFoundException;
 import es.edu.app.persistence.repository.UserRepositoryImpl;
 import es.edu.app.service.user.UserService;
@@ -63,6 +64,9 @@ public class UserApiHandler implements HttpHandler {
 		} catch (UserNotFoundException e) {
 			response = e.getMessage();
 			httpCode = HttpStatus.NOT_FOUND.getHttpCode();
+		} catch (InvalidUsernameException e) {
+			response = e.getMessage();
+			httpCode = HttpStatus.CONFLICT.getHttpCode();
 		} finally {
 			LOGGER.log(Level.INFO, "Handled request successfully");
 			ExchangeUtils.sendApiResponse(httpExchange, response, httpCode);
