@@ -20,10 +20,10 @@ Java Web Application.
 * The server starts in __http://localhost:9010__
 * The available web pages are:
 ```
- __http://localhost:9010/login__
- __http://localhost:9010/page_1__
- __http://localhost:9010/page_2__
- __http://localhost:9010/page_3__
+ http://localhost:9010/login
+ http://localhost:9010/page_1
+ http://localhost:9010/page_2
+ http://localhost:9010/page_3
 ```
 * The app pre-generates 4 users (username/pass/role):
 ``` 
@@ -41,8 +41,8 @@ Java Web Application.
 * In the api, only admin users can execute post put or delete. All roles are allowed to execute get.
 * The available user endpoints are:
 ```
- __http://localhost:9010/v1/api/users__ POST/PUT creates/updates the user
- __http://localhost:9010/v1/api/users/<username>__ GET/DELETE gets/deletes the user whith this username
+http://localhost:9010/v1/api/users POST/PUT creates/updates the user
+http://localhost:9010/v1/api/users/<username> GET/DELETE gets/deletes the user whith this username
 ```
 * An example of a user POST body is: __{"username":"a","password\":"b","roles":["PAGE_1"]}__
 ## Run the application
