@@ -42,7 +42,7 @@ public class ViewAuthenticator extends Authenticator {
 				.getAttribute(WebAppExchangeAttributes.PARAMETERS);
 		Result result = null;
 		if (params.get(USERNAME) == null || params.get(PASSWORD) == null) {
-			ExchangeUtils.sendRedirectionResponse(httpExchange, "http://localhost:9010/login");
+			ExchangeUtils.sendRedirectionResponse(httpExchange, WebAppFlow.LOGIN.getPath());
 		}
 
 		try {

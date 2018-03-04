@@ -4,6 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.sun.net.httpserver.HttpContext;
+import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
 import es.edu.app.auth.ApiAuthenticator;
@@ -23,27 +24,33 @@ import es.edu.app.handler.login.LogoutHandler;
 import es.edu.app.handler.page.Page1Handler;
 import es.edu.app.handler.page.Page2Handler;
 import es.edu.app.handler.page.Page3Handler;
+import es.edu.app.session.CookieObserver;
 
 public class WebServerContextFactoryImpl implements WebServerContextFactory {
 
 	private final static Logger LOGGER = Logger.getLogger(WebServerContextFactoryImpl.class.getName());
 
 	@Override
-	public void createContext(HttpServer server, WebAppFlow flow) {
+	public HttpContext createContext(HttpServer server, WebAppFlow flow) {
 
 		LOGGER.log(Level.INFO, String.format("Loading %s HttpContext", flow.getPath()));
 
-		HttpContext context;
+		HttpContext context = null;
+		HttpHandler httpHandler;
 		switch (flow) {
 		case LOGIN:
-			context = server.createContext(WebAppFlow.LOGIN.getPath(), new LoginHandler());
+			httpHandler = new LoginHandler();
+			((LoginHandler) httpHandler).addObserver(CookieObserver.getObserver());
+			context = server.createContext(WebAppFlow.LOGIN.getPath(), httpHandler);
 			context.getFilters().add(new ViewParameterFilter());
 			break;
 		case LOGOUT:
-			server.createContext(WebAppFlow.LOGOUT.getPath(), new LogoutHandler());
+			context = server.createContext(WebAppFlow.LOGOUT.getPath(), new LogoutHandler());
 			break;
 		case LOGIN_SUCCESSFUL:
-			context = server.createContext(WebAppFlow.LOGIN_SUCCESSFUL.getPath(), new LoginSuccessfulHandler());
+			httpHandler = new LoginSuccessfulHandler();
+			((LoginSuccessfulHandler) httpHandler).addObserver(CookieObserver.getObserver());
+			context = server.createContext(WebAppFlow.LOGIN_SUCCESSFUL.getPath(), httpHandler);
 			context.getFilters().add(new ViewParameterFilter());
 			context.setAuthenticator(new ViewAuthenticator());
 			break;
@@ -56,19 +63,25 @@ public class WebServerContextFactoryImpl implements WebServerContextFactory {
 			context.getFilters().add(new UserValidationFilter());
 			break;
 		case PAGE_1:
-			context = server.createContext(WebAppFlow.PAGE_1.getPath(), new Page1Handler());
+			httpHandler = new Page1Handler();
+			((Page1Handler) httpHandler).addObserver(CookieObserver.getObserver());
+			context = server.createContext(WebAppFlow.PAGE_1.getPath(), httpHandler);
 			context.getFilters().add(new ViewParameterFilter());
 			context.getFilters().add(new SessionFilter());
 			context.getFilters().add(new ViewAuthorizationFilter());
 			break;
 		case PAGE_2:
-			context = server.createContext(WebAppFlow.PAGE_2.getPath(), new Page2Handler());
+			httpHandler = new Page2Handler();
+			((Page2Handler) httpHandler).addObserver(CookieObserver.getObserver());
+			context = server.createContext(WebAppFlow.PAGE_2.getPath(), httpHandler);
 			context.getFilters().add(new ViewParameterFilter());
 			context.getFilters().add(new SessionFilter());
 			context.getFilters().add(new ViewAuthorizationFilter());
 			break;
 		case PAGE_3:
-			context = server.createContext(WebAppFlow.PAGE_3.getPath(), new Page3Handler());
+			httpHandler = new Page3Handler();
+			((Page3Handler) httpHandler).addObserver(CookieObserver.getObserver());
+			context = server.createContext(WebAppFlow.PAGE_3.getPath(), httpHandler);
 			context.getFilters().add(new ViewParameterFilter());
 			context.getFilters().add(new SessionFilter());
 			context.getFilters().add(new ViewAuthorizationFilter());
@@ -77,6 +90,8 @@ public class WebServerContextFactoryImpl implements WebServerContextFactory {
 			LOGGER.log(Level.WARNING, String.format("HttpContext %s not supported, dismissed", flow.getPath()));
 			break;
 		}
+		
+		return context;
 	}
 
 }

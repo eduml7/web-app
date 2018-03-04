@@ -11,6 +11,7 @@ import com.sun.net.httpserver.Filter;
 import com.sun.net.httpserver.HttpExchange;
 
 import es.edu.app.constants.WebAppCookies;
+import es.edu.app.enums.WebAppFlow;
 import es.edu.app.session.Cookie;
 import es.edu.app.session.CookieUtils;
 import es.edu.app.utils.ExchangeUtils;
@@ -28,7 +29,7 @@ public class SessionFilter extends Filter {
 			httpExchange.getResponseHeaders().add(WebAppCookies.SET_COOKIE_HEADER,
 					CookieUtils.createCookie(new Cookie(WebAppCookies.CALLER, httpExchange.getRequestURI().toString(),
 							OffsetDateTime.now().plus(Duration.ofMinutes(5)))));
-			ExchangeUtils.sendRedirectionResponse(httpExchange, "http://localhost:9010/login");
+			ExchangeUtils.sendRedirectionResponse(httpExchange, WebAppFlow.LOGIN.getPath());
 		} else {
 			chain.doFilter(httpExchange);
 		}

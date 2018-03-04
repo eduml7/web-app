@@ -7,17 +7,19 @@ import java.util.logging.Logger;
 import com.sun.net.httpserver.HttpServer;
 
 import es.edu.app.enums.WebAppFlow;
+import es.edu.app.utils.PropertiesUtils;
 
 public class WebServerConfig {
 
 	private final static Logger LOGGER = Logger.getLogger(WebServerConfig.class.getName());
+	private final static String SERVER_PORT = "server.port";
 
 	public static void run() throws Exception {
 
 		WebServerContextFactory webAppHandlerFactory = new WebServerContextFactoryImpl();
-		// TODO: a propiedad
-		int port = 9010;
 
+		int port = Integer.parseInt(PropertiesUtils.getPropValues(SERVER_PORT));
+		
 		HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
 
 		LOGGER.log(Level.INFO, String.format("Server started at %s", port));
