@@ -49,7 +49,7 @@ public class ExchangeUtils {
 		try {
 			LOGGER.log(Level.INFO, String.format("Sending %s response", statusCode));
 			commonHeaders(httpExchange);
-			httpExchange.sendResponseHeaders(statusCode, message.getBytes().length);
+			httpExchange.sendResponseHeaders(statusCode, 0);
 			OutputStream responseBody = httpExchange.getResponseBody();
 			responseBody.write(message.getBytes());
 			responseBody.close();

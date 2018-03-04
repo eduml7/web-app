@@ -35,7 +35,7 @@ public class ApiContentNegotiationFilter extends Filter {
 					|| httpExchange.getRequestMethod().equals(HttpMethod.PUT))
 					&& !contentType.startsWith(MediaType.APPLICATION_JSON)) {
 				ExchangeUtils.sendApiResponse(httpExchange, HttpStatus.UNSUPPORTED_MEDIA_TYPE.getDescription(),
-						HttpStatus.UNSUPPORTED_MEDIA_TYPE.hashCode());
+						HttpStatus.UNSUPPORTED_MEDIA_TYPE.getHttpCode());
 			} else {
 
 				chain.doFilter(httpExchange);

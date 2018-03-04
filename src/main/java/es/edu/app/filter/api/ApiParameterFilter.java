@@ -32,13 +32,13 @@ public class ApiParameterFilter extends Filter {
 		chain.doFilter(exchange);
 	}
 
-	public void getRequestBody(HttpExchange httpExchange) {
+	private void getRequestBody(HttpExchange httpExchange) {
 		String body = new BufferedReader(new InputStreamReader(httpExchange.getRequestBody())).lines()
 				.collect(Collectors.joining(CARRIER_RETURN));
 		httpExchange.setAttribute(WebAppExchangeAttributes.BODY, body);
 	}
 
-	public void getPathParam(HttpExchange httpExchange) {
+	private void getPathParam(HttpExchange httpExchange) {
 		String[] result = httpExchange.getRequestURI().getPath().split(SLASH);
 		httpExchange.setAttribute(WebAppExchangeAttributes.PATH, result[result.length - 1]);
 	}

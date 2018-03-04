@@ -49,6 +49,17 @@ jacocoTestReport {
         xml.enabled true
         html.enabled true
     }
+    afterEvaluate {
+        classDirectories = files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: ['es/edu/app/dto/**',
+                              'es/edu/app/constants/**',
+                    		  'es/edu/app/enums/**',
+                              'es/edu/app/persistence/entity/**',
+                              'es/edu/app/config/PersistenceConfig**',
+                              'es/edu/app/config/WebServerConfig**'])
+        })
+    }
 }
 
 task runJar (dependsOn: 'dist'){
