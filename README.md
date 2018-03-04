@@ -19,15 +19,19 @@ Java Web Application.
 
 * The server starts in __http://localhost:9010__
 * The available web pages are:
-** __http://localhost:9010/login__
-** __http://localhost:9010/page_1__
-** __http://localhost:9010/page_2__
-** __http://localhost:9010/page_3__
-* The app pre-generates 4 users (username/pass/role): 
-** "admin", "admin", Role.ADMIN
-** "user_page_1", "user_page_1", Role.PAGE_1 and Role.PAGE_2
-** "user_page_2", "user_page_2", Role.PAGE_2
-** "user_page_3", "user_page_3", Role.PAGE_3 and Role.PAGE_2
+```
+ __http://localhost:9010/login__
+ __http://localhost:9010/page_1__
+ __http://localhost:9010/page_2__
+ __http://localhost:9010/page_3__
+```
+* The app pre-generates 4 users (username/pass/role):
+``` 
+ "admin", "admin", Role.ADMIN
+ "user_page_1", "user_page_1", Role.PAGE_1 and Role.PAGE_2
+ "user_page_2", "user_page_2", Role.PAGE_2
+ "user_page_3", "user_page_3", Role.PAGE_3 and Role.PAGE_2
+```
 * You are allowed to create more users whith ADMIN
 * If you access to a page path without session, it redirects to /login
 * In /login if your credentials are ok, a page told you. If you have accessed from a private page, instead of the login successful page it redirects to the previous page.
@@ -36,8 +40,10 @@ Java Web Application.
 * To navigate between pages, you must set the appropiate url in the navigator
 * In the api, only admin users can execute post put or delete. All roles are allowed to execute get.
 * The available user endpoints are:
-** __http://localhost:9010/v1/api/users__ POST/PUT creates/updates the user
-** __http://localhost:9010/v1/api/users/<username>__ GET/DELETE gets/deletes the user whith this username
+```
+ __http://localhost:9010/v1/api/users__ POST/PUT creates/updates the user
+ __http://localhost:9010/v1/api/users/<username>__ GET/DELETE gets/deletes the user whith this username
+```
 * An example of a user POST body is: __{"username":"a","password\":"b","roles":["PAGE_1"]}__
 ## Run the application
 
