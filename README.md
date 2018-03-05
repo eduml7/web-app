@@ -2,6 +2,8 @@
 
 Java Web Application. 
 
+__USE FIREFOX AND UBUNTU FOR BEST PERFORMANCE__
+
 * I have used persistence in memory with a ConcurrentHashMap, applying singleton pattern.
 * I have extracted the properties file from the jar file, because I think is necessary not to compile again to change only a param.
 * The app has a factory to handle the web server context creation.
