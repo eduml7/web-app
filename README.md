@@ -3,7 +3,7 @@
 Java Web Application. 
 
 * I have used persistence in memory with a ConcurrentHashMap, applying singleton pattern.
-* I have extracted the properties file from the jar file, because I think its neccesary not to compile again to change only a param.
+* I have extracted the properties file from the jar file, because I think is necessary not to compile again to change only a param.
 * The app has a factory to handle the web server context creation.
 * The app has four different layers:
 
@@ -39,16 +39,16 @@ Java Web Application.
 * You are allowed to create more users whith ADMIN
 * If you access to a page path without session, it redirects to /login
 * In /login if your credentials are ok, a page told you. If you have accessed from a private page, instead of the login successful page it redirects to the previous page.
-* If you access is ok but you dont have the role neccesary to access, a forbidden page is shown
+* If you access is ok but you don't have the role necessary to access, a forbidden page is shown
 * If you access is ko an Unauthorized page is shown
 * To navigate between pages, you must set the appropiate url in the navigator
 * In the api, only admin users can execute post put or delete. All roles are allowed to execute get.
 * The available user endpoints are:
 ```
-http://localhost:9010/v1/api/users POST/PUT creates/updates the user
+http://localhost:9010/v1/api/users POST/PUT creates/updates the user (returns the user stored)
 http://localhost:9010/v1/api/users/<username> GET/DELETE gets/deletes the user whith this username
 ```
-* An example of a user POST body is: __{"username":"a","password\":"b","roles":["PAGE_1"]}__
+* An example of a user POST body is: __{"username":"a","password":"b","roles":["PAGE_1"]}__
 ## Run the application
 
 (If you run it under windows, you must use gradlew.bat)
