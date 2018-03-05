@@ -1,7 +1,5 @@
 package config;
 
-import java.net.InetSocketAddress;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -40,9 +38,9 @@ public class WebServerContextFactoryTest {
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		webServerContextFactory = new WebServerContextFactoryImpl();
-		httpServer = HttpServer.create(new InetSocketAddress(9000), 0);
+		httpServer = HttpServer.create();
 	}
-	
+
 	@After
 	public void tearDown() throws Exception {
 		httpServer.stop(0);
