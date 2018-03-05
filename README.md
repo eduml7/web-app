@@ -63,5 +63,6 @@ You can run the app without the gradle task, creating the distribution package  
 ## Run the application test: jacoco report
 
 1. You have to build the application: __./gradlew clean build__ 
-2. There is a gradle task to generate the jacoco coverage report. __./gradlew jacocoTestReport__ The report is under __/web-app/build/reports/jacoco/test/html__ directory.
+2. There is a gradle task to generate the jacoco coverage report. __./gradlew jacocoTestReport__ The report is under __/build/reports/jacoco/test/html__ directory.
 3. Double click on __index.html__ to see all the converage info
+4. The unit test report is under the directory __\build\reports\tests\test__. Double click on __index.html__ to see.
