@@ -21,6 +21,9 @@ jar {
     manifest {
         attributes 'Main-Class': 'es.edu.app.WebApplication'
     }
+      from {
+    configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+  }
 }
 
 processResources {

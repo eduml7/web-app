@@ -18,7 +18,8 @@ public class UserRepositoryImpl implements UserRepository {
 
 	@Override
 	public User updateUser(User user) {
-		return PersistenceEngine.getPersistence().put(user.getUsername(), user);
+		PersistenceEngine.getPersistence().put(user.getUsername(), user);
+		return PersistenceEngine.getPersistence().get(user.getUsername());
 	}
 
 	@Override
