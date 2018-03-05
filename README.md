@@ -6,12 +6,14 @@ Java Web Application.
 * I have extracted the properties file from the jar file, because I think its neccesary not to compile again to change only a param.
 * The app has a factory to handle the web server context creation.
 * The app has four different layers:
-´´´
+
+```
  Persistence -> the model layer
  Service -> abstracts the controller layer to the persistence of the info
  Handler -> controller layer
  resources/html -> view layer
-´´´
+```
+
 * Content-negotiation: web-app uses json media type
 * The app increases the session cookie life reactively with an observer pattern. When the logged user interacts with the app, its life resets to 5 minutes.
 * The app uses various HTTP status for the required situations.
