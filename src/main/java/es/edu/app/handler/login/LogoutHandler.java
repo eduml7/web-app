@@ -1,16 +1,12 @@
 package es.edu.app.handler.login;
 
 import java.io.IOException;
-import java.time.Duration;
-import java.time.OffsetDateTime;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import es.edu.app.constants.WebAppCookies;
 import es.edu.app.enums.WebAppFlow;
-import es.edu.app.session.Cookie;
-import es.edu.app.session.CookieUtils;
 import es.edu.app.utils.ExchangeUtils;
 
 /**
@@ -21,15 +17,13 @@ import es.edu.app.utils.ExchangeUtils;
  */
 public class LogoutHandler implements HttpHandler {
 
-	private static final String EMPTY = "";
+	private static final String DELETE_CALLER_COOKIE = "caller=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+	private static final String DELETE_SESSION_COOKIE = "session=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
 
 	@Override
 	public void handle(HttpExchange httpExchange) throws IOException {
-
-		httpExchange.getResponseHeaders().add(WebAppCookies.SET_COOKIE_HEADER, CookieUtils.createCookie(
-				new Cookie(WebAppCookies.CALLER, EMPTY, OffsetDateTime.now().plus(Duration.ofMinutes(-1)))));
-		httpExchange.getResponseHeaders().add(WebAppCookies.SET_COOKIE_HEADER, CookieUtils.createCookie(
-				new Cookie(WebAppCookies.SESSION, EMPTY, OffsetDateTime.now().plus(Duration.ofMinutes(-1)))));
+		httpExchange.getResponseHeaders().add(WebAppCookies.SET_COOKIE_HEADER, DELETE_CALLER_COOKIE);
+		httpExchange.getResponseHeaders().add(WebAppCookies.SET_COOKIE_HEADER, DELETE_SESSION_COOKIE);
 		ExchangeUtils.sendRedirectionResponse(httpExchange, WebAppFlow.LOGIN.getPath());
 	}
 

@@ -43,20 +43,42 @@ public class RequestValidationFilterTest {
 	}
 
 	@Test
-	public void requestValidationFilerPostTest() throws IOException, URISyntaxException {
+	public void requestValidationFilerKOPostTest() throws IOException, URISyntaxException {
 		when(httpExchange.getRequestMethod()).thenReturn("POST");
 		when(httpExchange.getResponseHeaders()).thenReturn(new Headers());
 		when(httpExchange.getResponseBody()).thenReturn(new ByteArrayOutputStream());
-		when(httpExchange.getRequestURI()).thenReturn(new URI("/path"));
+		when(httpExchange.getRequestURI()).thenReturn(new URI("/v1/api/user/username"));
 		requestValidationFilter.doFilter(httpExchange, chain);
-		verify(httpExchange).sendResponseHeaders(eq(400), eq(0L));
+		
 	}
 	
 	@Test
-	public void requestValidationFilerGetTest() throws IOException, URISyntaxException {
+	public void requestValidationFilerOKPostTest() throws IOException, URISyntaxException {
+		when(httpExchange.getRequestMethod()).thenReturn("POST");
+		when(httpExchange.getResponseHeaders()).thenReturn(new Headers());
+		when(httpExchange.getResponseBody()).thenReturn(new ByteArrayOutputStream());
+		when(httpExchange.getRequestURI()).thenReturn(new URI("/v1/api/user"));
+		requestValidationFilter.doFilter(httpExchange, chain);
+	}
+	
+	@Test
+	public void requestValidationFilerOKGetTest() throws IOException, URISyntaxException{
 		when(httpExchange.getRequestMethod()).thenReturn("GET");
+		when(httpExchange.getResponseHeaders()).thenReturn(new Headers());
+		when(httpExchange.getResponseBody()).thenReturn(new ByteArrayOutputStream());
+		when(httpExchange.getRequestURI()).thenReturn(new URI("/v1/api/user/username"));
 		requestValidationFilter.doFilter(httpExchange, chain);
 		verify(chain).doFilter(httpExchange);
+	}
+	
+	@Test
+	public void requestValidationFilerKOGetTest() throws IOException, URISyntaxException{
+		when(httpExchange.getRequestMethod()).thenReturn("GET");
+		when(httpExchange.getResponseHeaders()).thenReturn(new Headers());
+		when(httpExchange.getResponseBody()).thenReturn(new ByteArrayOutputStream());
+		when(httpExchange.getRequestURI()).thenReturn(new URI("/v1/api/users/username"));
+		requestValidationFilter.doFilter(httpExchange, chain);
+		verify(httpExchange).sendResponseHeaders(eq(400), eq(0L));
 	}
 
 }

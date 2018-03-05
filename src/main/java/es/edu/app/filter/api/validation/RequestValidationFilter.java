@@ -21,6 +21,7 @@ import es.edu.app.utils.ExchangeUtils;
 public class RequestValidationFilter extends Filter {
 
 	private final static Logger LOGGER = Logger.getLogger(RequestValidationFilter.class.getName());
+	private final static String SLASH = "/";
 
 	@Override
 	public String description() {
@@ -30,17 +31,21 @@ public class RequestValidationFilter extends Filter {
 	@Override
 	public void doFilter(HttpExchange httpExchange, Chain chain) throws IOException {
 
-		if (httpExchange.getRequestMethod().equals(HttpMethod.POST)
-				|| httpExchange.getRequestMethod().equals(HttpMethod.PUT)) {
+		LOGGER.log(Level.INFO, this.description());
 
-			LOGGER.log(Level.INFO, this.description());
+		if (((httpExchange.getRequestMethod().equals(HttpMethod.POST)
+				|| httpExchange.getRequestMethod().equals(HttpMethod.PUT))
+				&& !httpExchange.getRequestURI().toString().equals(WebAppFlow.USER_API.getPath()))
+				||
+				((httpExchange.getRequestMethod().equals(HttpMethod.GET)
+						|| httpExchange.getRequestMethod().equals(HttpMethod.DELETE))
+						&& !httpExchange.getRequestURI().toString().contains(WebAppFlow.USER_API.getPath()+SLASH))) {
 
-			if (!httpExchange.getRequestURI().toString().equals(WebAppFlow.USER_API.getPath())) {
-				ExchangeUtils.sendApiResponse(httpExchange, HttpStatus.BAD_REQUEST.getDescription(),
-						HttpStatus.BAD_REQUEST.getHttpCode());
-				LOGGER.log(Level.SEVERE,
-						String.format("%s: %s", HttpStatus.BAD_REQUEST.getDescription(), httpExchange.getRequestURI()));
-			}
+			ExchangeUtils.sendApiResponse(httpExchange, HttpStatus.BAD_REQUEST.getDescription(),
+					HttpStatus.BAD_REQUEST.getHttpCode());
+			LOGGER.log(Level.SEVERE,
+					String.format("%s: %s", HttpStatus.BAD_REQUEST.getDescription(), httpExchange.getRequestURI()));
+
 		}
 
 		chain.doFilter(httpExchange);
