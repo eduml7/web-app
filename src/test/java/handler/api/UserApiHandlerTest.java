@@ -22,7 +22,7 @@ import es.edu.app.persistence.entity.User;
 
 public class UserApiHandlerTest {
 
-	UserApiHandler userApiHandler;
+	private UserApiHandler userApiHandler;
 
 	@Mock
 	private HttpExchange httpExchange;

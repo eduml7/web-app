@@ -24,10 +24,11 @@ import es.edu.app.filter.api.validation.UserValidationFilter;
 
 public class UserValidationFilterTest {
 
-	UserValidationFilter userValidationFilter;
+	private UserValidationFilter userValidationFilter;
 
 	@Mock
 	private HttpExchange httpExchange;
+	
 	@Mock
 	private Chain chain;
 

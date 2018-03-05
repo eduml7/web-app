@@ -19,7 +19,7 @@ import es.edu.app.handler.login.LoginHandler;
 
 public class LoginHandlerTest {
 
-	LoginHandler loginHandler;
+	private LoginHandler loginHandler;
 
 	@Mock
 	private HttpExchange httpExchange;

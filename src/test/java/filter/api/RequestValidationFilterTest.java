@@ -23,10 +23,11 @@ import es.edu.app.filter.api.validation.RequestValidationFilter;
 
 public class RequestValidationFilterTest {
 
-	RequestValidationFilter requestValidationFilter;
+	private RequestValidationFilter requestValidationFilter;
 
 	@Mock
 	private HttpExchange httpExchange;
+	
 	@Mock
 	private Chain chain;
 

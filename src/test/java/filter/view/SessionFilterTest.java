@@ -28,8 +28,8 @@ import es.edu.app.session.Session;
 
 public class SessionFilterTest {
 
-	SessionFilter sessionFilter;
-	Headers header;
+	private SessionFilter sessionFilter;
+	private Headers header;
 
 	@Mock
 	private HttpExchange httpExchange;

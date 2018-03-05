@@ -29,8 +29,8 @@ import es.edu.app.session.Session;
 
 public class ViewAuthorizationFilterTest {
 	
-	ViewAuthorizationFilter viewAuthorizationFilter;
-	Headers header;
+	private ViewAuthorizationFilter viewAuthorizationFilter;
+	private Headers header;
 	
 	@Mock
 	private HttpExchange httpExchange;

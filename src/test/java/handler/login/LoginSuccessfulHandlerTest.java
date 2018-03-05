@@ -20,7 +20,7 @@ import es.edu.app.handler.login.LoginSuccessfulHandler;
 
 public class LoginSuccessfulHandlerTest {
 
-	LoginSuccessfulHandler loginSuccessfulHandler;
+	private LoginSuccessfulHandler loginSuccessfulHandler;
 
 	@Mock
 	private HttpExchange httpExchange;

@@ -23,10 +23,11 @@ import es.edu.app.filter.api.ApiContentNegotiationFilter;
 
 public class ApiContentNegotiationFilterTest {
 
-	ApiContentNegotiationFilter apiContentNegotiationFilter;
+	private ApiContentNegotiationFilter apiContentNegotiationFilter;
 
 	@Mock
 	private HttpExchange httpExchange;
+	
 	@Mock
 	private Chain chain;
 	Headers header;

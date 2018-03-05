@@ -19,7 +19,7 @@ import es.edu.app.handler.login.LogoutHandler;
 
 public class LogoutHandlerTest {
 
-	LogoutHandler logoutHandler;
+	private LogoutHandler logoutHandler;
 
 	@Mock
 	private HttpExchange httpExchange;

@@ -23,10 +23,11 @@ import es.edu.app.filter.view.ViewParameterFilter;
 
 public class ViewParameterFilterTest {
 	
-	ViewParameterFilter viewParameterFilter;
+	private ViewParameterFilter viewParameterFilter;
 
 	@Mock
 	private HttpExchange httpExchange;
+	
 	@Mock
 	private Chain chain;
 

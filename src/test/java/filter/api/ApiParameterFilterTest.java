@@ -22,10 +22,11 @@ import es.edu.app.filter.api.ApiParameterFilter;
 
 public class ApiParameterFilterTest {
 
-	ApiParameterFilter apiParameterFilter;
+	private ApiParameterFilter apiParameterFilter;
 
 	@Mock
 	private HttpExchange httpExchange;
+	
 	@Mock
 	private Chain chain;
 

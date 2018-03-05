@@ -31,9 +31,10 @@ import es.edu.app.persistence.entity.User;
 
 public class ViewAuthenticatorTest {
 
-	ViewAuthenticator viewAuthenticator;
-	Headers header;
-	Map<String, String> params;
+	private ViewAuthenticator viewAuthenticator;
+	private Headers header;
+	private Map<String, String> params;
+	
 	@Mock
 	private HttpExchange httpExchange;
 

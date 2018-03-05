@@ -26,8 +26,8 @@ import es.edu.app.persistence.entity.User;
 
 public class ApiAuthenticatorTest {
 
-	ApiAuthenticator apiAuthenticator;
-	Headers header;
+	private ApiAuthenticator apiAuthenticator;
+	private Headers header;
 	
 	@Mock
 	private HttpExchange httpExchange;

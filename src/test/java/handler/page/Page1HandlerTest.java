@@ -22,8 +22,8 @@ import es.edu.app.session.Session;
 
 public class Page1HandlerTest {
 
-	Page1Handler page1Handler;
-	Headers header;
+	private Page1Handler page1Handler;
+	private Headers header;
 
 	@Mock
 	private HttpExchange httpExchange;
